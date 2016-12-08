@@ -1,0 +1,55 @@
+.game {
+	overflow:hidden;
+	max-width:600px;
+	max-height:350px;
+	position:absolute;
+}
+table {
+	height:100%;
+	width:100%;
+	table-layout:fixed;
+	border-collapse: collapse;
+}
+tr {
+}
+td {
+	padding:0;
+}
+.null {
+	background-color: blue;
+}
+.wall {
+	background: url(img/dirt.svg);
+	background-size: cover;
+}
+.moss{
+	background: url(img/grass.svg);
+	background-size: cover;
+}
+.lava {
+	background: red;
+}
+.player {
+	background: url(img/plato.svg);
+	background-size: cover;
+}
+.lost .player {
+	background: red;
+}
+.won .player {
+	background: yellow;
+}
+.left .player {
+       -moz-transform: scaleX(-1);
+        -o-transform: scaleX(-1);
+        -webkit-transform: scaleX(-1);
+        transform: scaleX(-1);
+        filter: FlipH;
+        -ms-filter: "FlipH";
+}
+.coin {
+	background: yellow;
+}
+.actor {
+	position:absolute;
+}
