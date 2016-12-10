@@ -11,27 +11,97 @@ var GAME_LEVELS = [
 	 '                                                                                   ',
 	 '                                                                                   ',
 	 '                                                                                   ',
-	 '                                                                                   ',
+	 '                                                                                  d',
 	 '                                                                   mmmmmmmmmmmmmmmm',
 	 '                                                                   xxxxxxxxxxxxxxxx',
-	 '                                                                 mxxxxxxxxxxxxxxxxx',
+	 '                                                                 mmxxxxxxxxxxxxxxxx',
 	 '                                                                  xxxxxxxxxxxxxxxxx',
 	 '                                                                  xxxxxxxxxxxxxxxxx',
 	 '                                                                  xxxxxxxxxxxxxxxxx',
-	 '                                                               mxxxxxxxxxxxxxxxxxxx',
+	 '                                                               mmmxxxxxxxxxxxxxxxxx',
+	 '                                                              mxxxxxxxxxxxxxxxxxxxx',
 	 '                                                             mxxxxxxxxxxxxxxxxxxxxx',
-	 '                                                             xxxxxxxxxxxxxxxxxxxxxx',
 	 '                                                            mxxxxxxxxxxxxxxxxxxxxxx',
 	 '                                                           mxxxxxxxxxxxxxxxxxxxxxxx',
 	 '                                                          mxxxxxxxxxxxxxxxxxxxxxxxx',
 	 '                                                         mxxxxxxxxxxxxxxxxxxxxxxxxx',
 	 '                                                        mxxxxxxxxxxxxxxxxxxxxxxxxxx',
 	 '                                                       mxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-	 '                                                      mxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
+	 '   x x                                                mxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
 	 '                                                     mxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-	 ' @                                                  mxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
+	 ' @d                                                 mxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
 	 'mmmmmmmmmmmmmmmmm   mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
 	 'xxxxxxxxxxxxxxxxx!!!xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
+	 ],
+	 [
+	 'l                                                                                         ',
+	 'o                                                                                         ',
+	 '                                                                                          ',
+	 '                                                                                          ',
+	 '                                                                                          ',
+	 '                                                                   mmmmmmmmmmmmmmmmmmmmm  ',
+	 '                                                                                          ',
+	 '                                                                                          ',
+	 '                                                              x              =            ',
+	 '                                                                                          ',
+	 '                                                                                          ',
+	 '                                                         x            mmmmmm   xxxxxxxxxxx',
+	 '                                                                           x   x          ',
+	 '                                                                           x   x          ',
+	 '                                                    x   v   v              x   x          ',
+	 '                                                                               x          ',
+	 '                                                                 =             x          ',
+	 '                                               x                               x          ',
+	 '                                                                  xxxxxxxxxxxxxx          ',
+	 '                                                                                          ',
+	 '                                                                                          ',
+	 '                             mmmmmmmmmmmm  xxxxxxxxx x x  x                               ',
+	 '                                                          x       x                       ',
+	 '                                                          x                               ',
+	 '                    mmmmmm             o                  x                               ',
+	 '                   m      mmmmmmmmmmmmmmm                                                 ',
+	 '                  m                                                                       ',
+	 '                                                                                          ',
+	 '                                                                                          ',
+	 '    @d   o                                                                               d',
+	 'mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm!!!!!!!!!!!!!!!!!!!!!!!!!mmmmmmmmmmmmmmmmmmmmmmmm',
+	 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx!!!!!!!!!!!!!!!!!!!!!!!!!xxxxxxxxxxxxxxxxxxxxxxxx',
+	 ],
+	 [
+	 'o                   !x                                        !        xxxxxxxxxxxxxxxxxxx',
+	 '!!!!!               !x                               x        v        xxxxxxxxxxxxxxxxxxx',
+	 'xxxx!               vx                               x                 xxxxxxxxxxxxxxxxxxx',
+	 'x   |                x                               x                 xxxxxxxxxxxxxxxxxxx',
+	 'x                    x                               x                 xxxxxxxxxxxxxxxxxxx',
+	 'x                    x                               x                 xxxxxxxxxxxxxxxxxxx',
+	 'x                    x                               x                 xxxxxxxxxxxxxxxxxxx',
+	 'xk                   x                               x                 xxxxxxxxxxxxxxxxxxx',
+	 'xxxxxxxxxxxxxxxxx    x                               x      xxxxxxxx    xxxxxxxxxxxxxxxxxx',
+	 '                x    x   xxxxxxxxxxxxxxxxxx    x     x     =xxx     x    xxxxxxxxxxxxxxxxx',
+	 '                x    x                 xxxx=         x    x  x       x                    ',
+	 '                x   x!           =     xxx     xxx   x       x        x                   ',
+	 '                x   x                  xxx     xxx   x       x         x                 1',
+	 '                x     xxxxxxxxxxxxxx   xxx    xxxx   x      @x          xxxxxxxxxxxxxxxxxx',
+	 '                xx                     xxx   =       x      xx                            ',
+	 '                xx  x                 =x     xxxxxx         xx                            ',
+	 '                xx                     x     x =            xx                            ',
+	 '                xx        xxxxxxxxxxxxxx            x   d                                 ',
+	 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx=           xxxxxx                                ',
+	 '                                          x         xx                                    ',
+	 '=                                                    x                                    ',
+	 '                                                    xx                                    ',
+	 'xxxxx  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx                                    ',
+	 '    x  x                                                                                  ',
+	 '                                                                                          ',
+	 '                                                                                         2',
+	 'mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm',
+	 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
+	 ],
+	 [
+	 '       x                      x                 x           ',
+	 '                           @                                ',
+	 '                                                            ',
+	 'mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm',
 	 ]
 
 ];
@@ -41,7 +111,7 @@ function Level(plan) {
 	this.height = plan.length;
 	this.grid = [];
 	this.actors = [];
-
+	console.log(this.width, this.height);
 	var actorTypes = {
 		'@': Player,
 		'o': Coin,
@@ -58,10 +128,16 @@ function Level(plan) {
 			var fieldType = null;
 			if (Actor)
 				this.actors.push(new Actor(ch, new Vector(x, y)));
+			else if (ch == 'l'){
+				fieldType = 'null';
+				this.darkness = 'true';
+			}
 			else if (ch == 'x')
 				fieldType = 'wall';
 			else if (ch == 'm')
-				fieldType = 'moss'
+				fieldType = 'moss';
+			else if (ch == 'd')
+				fieldType = 'door';
 			else if (ch == '!')
 				fieldType = 'lava';
 			gridLine.push(fieldType);
@@ -96,7 +172,6 @@ Level.prototype.playerTouched = function(type, actor) {
 	    this.finishDelay = 1;
 	}
 	else if (type == 'coin' ) {
-		console.log("Touched coin.");
 		this.actors = this.actors.filter(function(other) {
 			return other != actor;
 		});
@@ -107,12 +182,15 @@ Level.prototype.playerTouched = function(type, actor) {
       		this.finishDelay = 1;
     	}
 	}
+	else if (type == 'door') {
+		this.status = 'won';
+	}
 };
 
 var playerXSpeed = 1.6;
 var gravity = 4.1;
 var jumpSpeed = 6;
-var scale = 20;
+var scale = 22;
 var maxStep = .05;
 //calls .act on each actor and subtracts step by maxStep. repeats until step = 0
 Level.prototype.animate = function(step, keys) {
@@ -157,11 +235,16 @@ Level.prototype.obstacleAt = function (pos, size) {
 		}
 	}
 };
+function Door(ch, pos) {
+	this.pos = pos.plus(new Vector(0, -1));
+	this.size = new Vector(10/8, 10/5);
+}
 //stores player properties
 function Player(ch, pos) {
 	this.speed = new Vector(0, 0);
 	this.pos = pos.plus(new Vector(0, -1));
-	this.size = new Vector(20 / 16, 20 / 10);
+	//this.size = new Vector(10 / 8, 10 / 5);
+	this.size = new Vector(.8, 1.9)
 }
 Player.prototype.type = 'player';
 //passes its arguments to moveX and moveY and calls them, and if there is an actor at
@@ -296,7 +379,6 @@ function DOMDisplay(parent, level) {
 DOMDisplay.prototype.clear = function() {
   this.display.parentNode.removeChild(this.display);
 };
-
 DOMDisplay.prototype.scrollPlayerIntoView =  function() {
 	var width = this.display.clientWidth;
 	var height = this.display.clientHeight;
@@ -320,7 +402,6 @@ DOMDisplay.prototype.scrollPlayerIntoView =  function() {
 	else if (center.y > bottom - marginY)
 	    this.display.scrollTop = center.y + marginY - height;
 	};
-
 DOMDisplay.prototype.drawBackground = function(){
 	var table = elt('table');
 	this.level.grid.forEach(function(row){
@@ -336,7 +417,6 @@ DOMDisplay.prototype.drawBackground = function(){
 	});
 	return table;
 };
-
 DOMDisplay.prototype.drawActors = function() {
 	var wrap = elt('div');
 	this.level.actors.forEach(function(actor){
@@ -348,6 +428,37 @@ DOMDisplay.prototype.drawActors = function() {
 	});
 	return wrap;
 };
+function setAttributes(el, attrs) {
+  for(var key in attrs) {
+    el.setAttribute(key, attrs[key]);
+  }
+}
+DOMDisplay.prototype.drawLantern = function() {
+	//adjust lantern
+	var lantern = this.level.player.pos.plus(new Vector (-1.5, 1));
+	var radius = 55;
+	if (this.SVG) this.display.removeChild(this.SVG);
+
+	this.SVG = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+	var darkness = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+	var displayHeight = window.getComputedStyle(this.display).getPropertyValue('height').slice(0, -2);
+	var displayWidth = window.getComputedStyle(this.display).getPropertyValue('width').slice(0, -2);
+	setAttributes(this.SVG, {
+		'xmlns': 'http://www.w3.org/2000/svg',
+		'height': this.display.clientHeight + 'px',
+		'width': this.display.clientWidth + 'px'
+	});
+	setAttributes(darkness, {
+		'd': 'M ' + ((lantern.x  * scale) - this.display.scrollLeft) + ' ' + (lantern.y * scale - this.display.scrollTop) +
+		' A ' + radius + ' ' + radius + ' 0 1 1 ' + ((lantern.x  * scale) - this.display.scrollLeft) + ' ' + (lantern.y * scale - this.display.scrollTop + .1) + 
+		' M 0 0 H ' + displayWidth + ' V ' + displayHeight + ' H 0 Z',
+		'fill':'black',
+		'fill-rule':'evenodd'
+	});
+	this.SVG.appendChild(darkness);
+	this.display.appendChild(this.SVG);
+};
+
 
 DOMDisplay.prototype.drawFrame = function () {
 	if (this.actorLayer)
@@ -379,6 +490,8 @@ function runLevel(level, Display, andThen) {
 	runAnimation(function(step) {
 		level.animate(step, arrows);
 		display.drawFrame();
+		if(level.darkness)
+			display.drawLantern();
 		if (level.isFinished()) {
      		display.clear();
      		if (andThen)
