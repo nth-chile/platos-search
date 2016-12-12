@@ -27,9 +27,9 @@ var GAME_LEVELS = [
 	 '                                                         mxxxxxxxxxxxxxxxxxxxxxxxxx',
 	 '                                                        mxxxxxxxxxxxxxxxxxxxxxxxxxx',
 	 '                                                       mxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-	 '   x x                                                mxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
+	 '                                                      mxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
 	 '                                                     mxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-	 ' @d                                                 mxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
+	 ' d @                                                mxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
 	 'mmmmmmmmmmmmmmmmm   mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
 	 'xxxxxxxxxxxxxxxxx!!!xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
 	 ],
@@ -41,21 +41,21 @@ var GAME_LEVELS = [
 	 '                                                                                          ',
 	 '                                                                   mmmmmmmmmmmmmmmmmmmmm  ',
 	 '                                                                                          ',
-	 '                                                                                          ',
+	 '                                                              o                           ',
 	 '                                                              x              =            ',
 	 '                                                                                          ',
-	 '                                                                                          ',
-	 '                                                         x            mmmmmm   xxxxxxxxxxx',
-	 '                                                                           x   x          ',
-	 '                                                                           x   x          ',
-	 '                                                    x   v   v              x   x          ',
-	 '                                                                               x          ',
-	 '                                                                 =             x          ',
-	 '                                               x                               x          ',
+	 '                                                         o                                ',
+	 '                                                         x   !!!!!!!!!mmmmmm   xxxxxxxxxxx',
+	 '                                                            vxxxxxxxxx     x   x          ',
+	 '                                                    o                      x   x          ',
+	 '                                                    x                 o    x   x          ',
+	 '                               o                                               x          ',
+	 '                               m                           x      =            x          ',
+	 '                                     m         x                               x          ',
 	 '                                                                  xxxxxxxxxxxxxx          ',
 	 '                                                                                          ',
 	 '                                                                                          ',
-	 '                             mmmmmmmmmmmm  xxxxxxxxx x x  x                               ',
+	 '                             mmmmmmmmmmmm  xxxxxxxxxxxx   x                               ',
 	 '                                                          x       x                       ',
 	 '                                                          x                               ',
 	 '                    mmmmmm             o                  x                               ',
@@ -63,9 +63,8 @@ var GAME_LEVELS = [
 	 '                  m                                                                       ',
 	 '                                                                                          ',
 	 '                                                                                          ',
-	 '    @d   o                                                                               d',
+	 'd   @    o                                                                               d',
 	 'mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm!!!!!!!!!!!!!!!!!!!!!!!!!mmmmmmmmmmmmmmmmmmmmmmmm',
-	 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx!!!!!!!!!!!!!!!!!!!!!!!!!xxxxxxxxxxxxxxxxxxxxxxxx',
 	 ],
 	 [
 	 'o                   !x                                        !        xxxxxxxxxxxxxxxxxxx',
@@ -85,7 +84,7 @@ var GAME_LEVELS = [
 	 '                xx                     xxx   =       x      xx                            ',
 	 '                xx  x                 =x     xxxxxx         xx                            ',
 	 '                xx                     x     x =            xx                            ',
-	 '                xx        xxxxxxxxxxxxxx            x   d                                 ',
+	 '                xx        xxxxxxxxxxxxxx            x                                     ',
 	 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx=           xxxxxx                                ',
 	 '                                          x         xx                                    ',
 	 '=                                                    x                                    ',
@@ -95,15 +94,7 @@ var GAME_LEVELS = [
 	 '                                                                                          ',
 	 '                                                                                         2',
 	 'mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm',
-	 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
 	 ],
-	 [
-	 '       x                      x                 x           ',
-	 '                           @                                ',
-	 '                                                            ',
-	 'mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm',
-	 ]
-
 ];
 
 function Level(plan) {
@@ -111,7 +102,6 @@ function Level(plan) {
 	this.height = plan.length;
 	this.grid = [];
 	this.actors = [];
-	console.log(this.width, this.height);
 	var actorTypes = {
 		'@': Player,
 		'o': Coin,
@@ -130,7 +120,7 @@ function Level(plan) {
 				this.actors.push(new Actor(ch, new Vector(x, y)));
 			else if (ch == 'l'){
 				fieldType = 'null';
-				this.darkness = 'true';
+				this.darkness = new Darkness(this);
 			}
 			else if (ch == 'x')
 				fieldType = 'wall';
@@ -171,16 +161,19 @@ Level.prototype.playerTouched = function(type, actor) {
 	    this.status = "lost";
 	    this.finishDelay = 1;
 	}
+	//coins are lantern fuel
 	else if (type == 'coin' ) {
 		this.actors = this.actors.filter(function(other) {
 			return other != actor;
 		});
+		this.darkness.radius += 20;
+		/*
 		if (!this.actors.some(function(actor) {
       		return actor.type == "coin";
    		})) {
       		this.status = "won";
       		this.finishDelay = 1;
-    	}
+    	}*/
 	}
 	else if (type == 'door') {
 		this.status = 'won';
@@ -192,6 +185,7 @@ var gravity = 4.1;
 var jumpSpeed = 6;
 var scale = 22;
 var maxStep = .05;
+
 //calls .act on each actor and subtracts step by maxStep. repeats until step = 0
 Level.prototype.animate = function(step, keys) {
 	if (this.status != null)
@@ -202,6 +196,8 @@ Level.prototype.animate = function(step, keys) {
    		this.actors.forEach(function(actor) {
     		actor.act(thisStep, this, keys);
     	}, this);
+    	if(this.darkness)
+    		this.darkness.act(thisStep);
     	step -= thisStep;
 	}
 };
@@ -216,8 +212,6 @@ Vector.prototype.plus = function(vector) {
 Vector.prototype.times = function(times) {
   return new Vector(this.x * times, this.y * times);
 };
-//returns 'wall' or 'lava' when the given pos and size overlaps walls or stagnant lava
-//treats the table sides and top as walls, and the table bottom as lava
 Level.prototype.obstacleAt = function (pos, size) {
 	var xStart = Math.floor(pos.x);
 	var xEnd = Math.ceil(pos.x + size.x);
@@ -243,8 +237,8 @@ function Door(ch, pos) {
 function Player(ch, pos) {
 	this.speed = new Vector(0, 0);
 	this.pos = pos.plus(new Vector(0, -1));
-	//this.size = new Vector(10 / 8, 10 / 5);
-	this.size = new Vector(.8, 1.9)
+	//this.size = new Vector(.8, 1.8);
+	this.size = new Vector(.94, 1.9)
 }
 Player.prototype.type = 'player';
 //passes its arguments to moveX and moveY and calls them, and if there is an actor at
@@ -283,7 +277,7 @@ Player.prototype.moveX = function(step, level, keys) {
 };
 
 Player.prototype.jumpReady = function(keys, obstacle) {
-	if(obstacle && !keys.space && this.speed.y >= 0)
+	if(obstacle && !keys.up && this.speed.y >= 0)
 		jumpSpeed = 6;
 	else
 		jumpSpeed = 0;
@@ -296,7 +290,7 @@ Player.prototype.moveY = function(step, level, keys) {
 	var obstacle = level.obstacleAt(newPos, this.size);
 	if (obstacle) {
 		level.playerTouched(obstacle);
-		if (keys.space && this.speed.y > 0)
+		if (keys.up && this.speed.y > 0)
 			this.speed.y = -jumpSpeed;
 		else
 			this.speed.y = 0;
@@ -306,7 +300,7 @@ Player.prototype.moveY = function(step, level, keys) {
 	this.jumpReady(keys, obstacle);
 };
 
-var arrowCodes = {37: "left", 32: "space", 39: "right"};
+var arrowCodes = {37: "left", 38: "up", 39: "right"};
 
 function trackKeys(codes) {
   var pressed = Object.create(null);
@@ -357,6 +351,35 @@ function Coin(ch, pos) {
 	this.pos = pos;
 	this.size = new Vector(.5, .5);
 }
+function Darkness(level) {
+	this.level = level;
+	this.radius = 55;
+	this.speed = .5;
+}
+Darkness.prototype.act = function(step) {
+	this.radius -= this.speed * step;
+	this.pos = this.level.player.pos.plus(new Vector (this.level.player.size.x / 2, this.level.player.size.y / 2));
+};
+
+CanvasDisplay.prototype.drawDarkness = function() {
+	var lantern = this.level.darkness.pos;
+	var radius = this.level.darkness.radius;
+	var x = (lantern.x - this.viewport.left) * scale;
+	var y = (lantern.y - this.viewport.top) * scale;
+	if(radius < 0)
+		this.level.status = 'lost';
+	else {
+	this.cx.beginPath();
+	this.cx.arc(x, y, radius, 0, 7);
+	this.cx.moveTo(0, 0);
+	this.cx.lineTo(0, this.canvas.height);
+	this.cx.lineTo(this.canvas.width, this.canvas.height);
+	this.cx.lineTo(this.canvas.width, 0);
+	this.cx.fillStyle = 'black';
+	this.cx.fill();	
+	}
+};
+
 Coin.prototype.type = 'coin';
 Coin.prototype.act = function() {
 	var nothing = null;
@@ -367,107 +390,125 @@ function elt(elt, classname) {
 	if (classname) element.className = classname;
 	return element;
 }
-//creates a div with class 'game', appends it to document body, calls drawBackground,
-//attaches the returned table to the div, and calls drawFrame and scrollPlayerIntoView.
-function DOMDisplay(parent, level) {
-	this.display = parent.appendChild(elt('div', 'game'));
+
+function CanvasDisplay(parent, level) {
+	this.canvas = document.createElement('canvas');
+	this.canvas.width = Math.min(550, level.width * scale);
+	this.canvas.height = Math.min(370, level.height * scale);
+	parent.appendChild(this.canvas);
+	this.cx = this.canvas.getContext('2d');
 	this.level = level;
-	this.actorLayer = null;
-	this.display.appendChild(this.drawBackground());
-	this.drawFrame();
+	this.animationTime = 0;
+	this.flipPlayer = false;
+	this.viewport = {
+		left: 0,
+		top: 0,
+		width: this.canvas.width / scale,
+		height: this.canvas.height / scale
+		};
+	this.drawFrame(0); //?
 }
-DOMDisplay.prototype.clear = function() {
-  this.display.parentNode.removeChild(this.display);
+CanvasDisplay.prototype.clear = function() {
+	this.canvas.parentNode.removeChild(this.canvas);
 };
-DOMDisplay.prototype.scrollPlayerIntoView =  function() {
-	var width = this.display.clientWidth;
-	var height = this.display.clientHeight;
-	var marginX = width / 3;
-	var marginY = height / 3;
-
-	var left = this.display.scrollLeft, right = left + width;
-	var top = this.display.scrollTop, bottom = top + height;
-
-
+CanvasDisplay.prototype.drawFrame = function(step) {
+	this.animationTime += step;
+	this.updateViewport();
+	this.clearDisplay();
+	this.drawBackground();
+	this.drawActors();
+};
+CanvasDisplay.prototype.clearDisplay = function() {
+	this.cx.fillStyle = 'rgb(79, 191, 247)';
+	this.cx.fillRect(0,0, this.canvas.width, this.canvas.height);
+};
+CanvasDisplay.prototype.updateViewport = function() {
+	var view = this.viewport;
+	var marginX = view.width / 3;
+	var marginY = view.height / 3;
 	var player = this.level.player;
-	var center = player.pos.plus(player.size.times(.5)).times(scale);
+	var center = player.pos.plus(player.size.times(0.5));
 
-	if (center.x < left + marginX){
-	 	this.display.scrollLeft = center.x - marginX;
-	}
-	else if (center.x > right - marginX)
-	    this.display.scrollLeft = center.x + marginX - width;
-	if (center.y < top + marginY)
-	    this.display.scrollTop = center.y - marginY;
-	else if (center.y > bottom - marginY)
-	    this.display.scrollTop = center.y + marginY - height;
-	};
-DOMDisplay.prototype.drawBackground = function(){
-	var table = elt('table');
-	this.level.grid.forEach(function(row){
-		var tr = elt('tr');
-		tr.style.height = scale + 'px';
-		table.appendChild(tr);
-		row.forEach(function(block){
-			var td = elt('td');
-			td.style.cssText = 'height: ' + scale + 'px; width:' + scale + 'px';
-			tr.appendChild(td);
-			td.className = block;
-		});
-	});
-	return table;
+	if (center.x < view.left + marginX)
+ 		view.left = Math.max(center.x - marginX, 0);
+	else if (center.x > view.left + view.width - marginX)
+		view.left = Math.min(center.x + marginX - view.width,
+							this.level.width - view.width);
+	if (center.y < view.top + marginY)
+		view.top = Math.max(center.y - marginY, 0);
+	else if (center.y > view.top + view.height - marginY)
+		view.top = Math.min(center.y + marginY - view.height,
+							this.level.height - view.height);
+	view.left = Math.round(view.left * scale) / scale;
+	view.top = Math.round(view.top * scale) / scale;
 };
-DOMDisplay.prototype.drawActors = function() {
-	var wrap = elt('div');
-	this.level.actors.forEach(function(actor){
-		var rect = wrap.appendChild(elt('div', actor.type + ' actor'));
-		rect.style.width = actor.size.x * scale + "px";
-	    rect.style.height = actor.size.y * scale + "px";
-	    rect.style.left = actor.pos.x * scale + "px";
-	    rect.style.top = actor.pos.y * scale + "px";
-	});
-	return wrap;
+var otherSprites = document.createElement('img');
+otherSprites.src = 'img/sprites.svg';
+CanvasDisplay.prototype.drawBackground = function() {
+  var view = this.viewport;
+  var xStart = Math.floor(view.left);
+  var xEnd = Math.ceil(view.left + view.width);
+  var yStart = Math.floor(view.top);
+  var yEnd = Math.ceil(view.top + view.height);
+
+  for (var y = yStart; y < yEnd; y++) {
+    for (var x = xStart; x < xEnd; x++) {
+     	var tile = this.level.grid[y][x];
+     	if (tile == null || tile == 'door') continue;
+     	var screenX = (x - view.left) * scale;
+     	var screenY = (y - view.top) * scale;
+     	if (tile == 'moss') var tileX = 0;
+     	else if (tile == 'wall') var tileX = scale;
+     	else if (tile == 'lava') var tileX = scale * 2;
+
+     	this.cx.drawImage(otherSprites,
+     					tileX,         0, scale, scale,
+						screenX, screenY, scale, scale);
+    }
+  }
 };
+function flipHorizontally(context, around) {
+  context.translate(around, 0);
+  context.scale(-1, 1);
+  context.translate(-around, 0);
+}
+var playerSprite = document.createElement('img');
+playerSprite.src = 'img/solidplayer.svg';
+CanvasDisplay.prototype.drawPlayer = function(x, y, width, height) {
+	var player = this.level.player;
+	//width += 3.15 * 2; //lantern hangs out
+	//x -= 3.15;
+	if(player.speed.x != 0)
+		this.flipPlayer = player.speed.x < 0;
+
+	this.cx.save();
+	if(this.flipPlayer)
+		flipHorizontally(this.cx, x + width / 2);
+	this.cx.drawImage(playerSprite, x, y, width, height);
+	this.cx.restore();
+};
+CanvasDisplay.prototype.drawActors = function() {
+	this.level.actors.forEach(function(actor) {
+		var width = actor.size.x * scale;
+		var height = actor.size.y * scale;
+		var x = (actor.pos.x - this.viewport.left) * scale;
+		var y = (actor.pos.y - this.viewport.top) * scale;
+		if (actor.type == 'player') {
+			this.drawPlayer(x, y, width, height);
+		} else {
+			var tileX = (actor.type == 'coin' ? 2.5 : 2) * scale;
+			this.cx.drawImage(otherSprites,
+							  tileX, 0, width, height,
+							  x,	 y, width, height);
+		}
+	}, this);
+};
+
+//is this used?
 function setAttributes(el, attrs) {
   for(var key in attrs) {
     el.setAttribute(key, attrs[key]);
   }
-}
-DOMDisplay.prototype.drawLantern = function() {
-	//adjust lantern
-	var lantern = this.level.player.pos.plus(new Vector (-1.5, 1));
-	var radius = 55;
-	if (this.SVG) this.display.removeChild(this.SVG);
-
-	this.SVG = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-	var darkness = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-	var displayHeight = window.getComputedStyle(this.display).getPropertyValue('height').slice(0, -2);
-	var displayWidth = window.getComputedStyle(this.display).getPropertyValue('width').slice(0, -2);
-	setAttributes(this.SVG, {
-		'xmlns': 'http://www.w3.org/2000/svg',
-		'height': this.display.clientHeight + 'px',
-		'width': this.display.clientWidth + 'px'
-	});
-	setAttributes(darkness, {
-		'd': 'M ' + ((lantern.x  * scale) - this.display.scrollLeft) + ' ' + (lantern.y * scale - this.display.scrollTop) +
-		' A ' + radius + ' ' + radius + ' 0 1 1 ' + ((lantern.x  * scale) - this.display.scrollLeft) + ' ' + (lantern.y * scale - this.display.scrollTop + .1) + 
-		' M 0 0 H ' + displayWidth + ' V ' + displayHeight + ' H 0 Z',
-		'fill':'black',
-		'fill-rule':'evenodd'
-	});
-	this.SVG.appendChild(darkness);
-	this.display.appendChild(this.SVG);
-};
-
-
-DOMDisplay.prototype.drawFrame = function () {
-	if (this.actorLayer)
-		this.display.removeChild(this.actorLayer);
-	this.actorLayer = this.display.appendChild(this.drawActors());
-	this.display.className = 'game ' + (this.level.status || '');
-	if (arrows.left) this.display.className += ' left';
-	if(arrows.right) this.display.className += ' right';
-	this.scrollPlayerIntoView();
 }
 
 function runAnimation(frameFunc) {
@@ -491,7 +532,7 @@ function runLevel(level, Display, andThen) {
 		level.animate(step, arrows);
 		display.drawFrame();
 		if(level.darkness)
-			display.drawLantern();
+			display.drawDarkness();
 		if (level.isFinished()) {
      		display.clear();
      		if (andThen)
@@ -513,4 +554,4 @@ function runGame(plans, Display) {
   }
   startLevel(0);
 }
-runGame(GAME_LEVELS, DOMDisplay);
+runGame(GAME_LEVELS, CanvasDisplay);
