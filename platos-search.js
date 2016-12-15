@@ -29,7 +29,7 @@ var GAME_LEVELS = [
 	 '                                                       mxxxxxxxxxxxxxxxxxxxxxxxxxxx',
 	 '                                                      mxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
 	 '                                                     mxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-	 ' d @                                                mxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
+	 'd   @                                               mxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
 	 'mmmmmmmmmmmmmmmmm   mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
 	 'xxxxxxxxxxxxxxxxx!!!xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
 	 ],
@@ -67,33 +67,58 @@ var GAME_LEVELS = [
 	 'mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm!!!!!!!!!!!!!!!!!!!!!!!!!mmmmmmmmmmmmmmmmmmmmmmmm',
 	 ],
 	 [
-	 'o                   !x                                        !        xxxxxxxxxxxxxxxxxxx',
+	 'o                   !x                               x        !        xxxxxxxxxxxxxxxxxxx',
 	 '!!!!!               !x                               x        v        xxxxxxxxxxxxxxxxxxx',
 	 'xxxx!               vx                               x                 xxxxxxxxxxxxxxxxxxx',
 	 'x   |                x                               x                 xxxxxxxxxxxxxxxxxxx',
 	 'x                    x                               x                 xxxxxxxxxxxxxxxxxxx',
 	 'x                    x                               x                 xxxxxxxxxxxxxxxxxxx',
+	 'x k                  x                               x                 xxxxxxxxxxxxxxxxxxx',
 	 'x                    x                               x                 xxxxxxxxxxxxxxxxxxx',
-	 'xk                   x                               x                 xxxxxxxxxxxxxxxxxxx',
-	 'xxxxxxxxxxxxxxxxx    x                               x      xxxxxxxx    xxxxxxxxxxxxxxxxxx',
-	 '                x    x   xxxxxxxxxxxxxxxxxx    x     x     =xxx     x    xxxxxxxxxxxxxxxxx',
-	 '                x    x                 xxxx=         x    x  x       x                    ',
-	 '                x   x!           =     xxx     xxx   x       x        x                   ',
-	 '                x   x                  xxx     xxx   x       x         x                 1',
-	 '                x     xxxxxxxxxxxxxx   xxx    xxxx   x      @x          xxxxxxxxxxxxxxxxxx',
-	 '                xx                     xxx   =       x      xx                            ',
-	 '                xx  x                 =x     xxxxxx         xx                            ',
-	 '                xx                     x     x =            xx                            ',
-	 '                xx        xxxxxxxxxxxxxx            x                                     ',
-	 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx=           xxxxxx                                ',
-	 '                                          x         xx                                    ',
+	 'xmmmmmmmmmmmmmmmm    x                               x      mmmmmmm    xxxxxxxxxxxxxxxxxx',
+	 '                x    x   mmmmmmmmmmmmmmmmmm    m     x     =xxx     m    xxxxxxxxxxxxxxxxx',
+	 '                x    x                 xxxx=         x    m  x       m                    ',
+	 '                x   mx           =     xxx     x     x       x        m                   ',
+	 '                x                      xxx     x     x       x         m                L ',
+	 '                x     mmmmmmmmmmmmmm   xxx    mxxx   x       x          mmmmmmmmmmmmmmmmmm',
+	 '                xm                     xxx   =       x      mx                            ',
+	 '                xx  x         =        x     x    m         xx                            ',
+	 '   k            xx                     x     x              xx                            ',
+	 'mmmm            xx        mmmmmmmmmmmmmx            m                                     ',
+	 '          mmmmmmxxmmmmmmmmxxxxxxxxxxxxxx=           xmmmmm                                ',
+	 '                                          m          x                                    ',
 	 '=                                                    x                                    ',
-	 '                                                    xx                                    ',
-	 'xxxxx  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx                                    ',
-	 '    x  x                                                                                  ',
+	 '                                                     x                                    ',
+	 'mmmmm  mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmxx                                    ',
 	 '                                                                                          ',
-	 '                                                                                         2',
+	 '                                                                                          ',
+	 '  @         d                                                                             ',
 	 'mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm',
+	 ],
+	 [
+	 '                                                                                          ',
+	 '                                                                                          ',
+	 '                                                                                          ',
+	 '                                                                                          ',
+	 '                                                                                          ',
+	 '                               mmmmmmmmmm!mmmmmmmmmmmmmmmmmmmmmmm                         ',
+	 '                                         k                       mmm                      ',
+	 '                          m                                      xxx                      ',
+	 '                                                                    mmm                   ',
+	 '                     m                                              xxx                   ',
+	 '                                                                       mmm                ',
+	 '                                                                                          ',
+	 '                m                                                                         ',
+	 '                         x      mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm',
+	 '                         x                                                                ',
+	 '           m             x                                                                ',
+	  '          m             x                                                                ',
+	 '                         xmmmmmmmmmmmmmmmmmmmmm!!!mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm  ',
+	 '                                                k                                         ',
+	 '      m                                   |                                               ',
+	 '                                                                                          ',
+	 '  @        L                                                                              ',
+	 'mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm!mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm',
 	 ],
 ];
 
@@ -103,6 +128,9 @@ function Level(plan) {
 	this.grid = [];
 	this.actors = [];
 	var actorTypes = {
+		'd': Door,
+		'L': Locked,
+		'k': Key,
 		'@': Player,
 		'o': Coin,
 		'=': Lava,
@@ -126,8 +154,6 @@ function Level(plan) {
 				fieldType = 'wall';
 			else if (ch == 'm')
 				fieldType = 'moss';
-			else if (ch == 'd')
-				fieldType = 'door';
 			else if (ch == '!')
 				fieldType = 'lava';
 			gridLine.push(fieldType);
@@ -175,14 +201,22 @@ Level.prototype.playerTouched = function(type, actor) {
       		this.finishDelay = 1;
     	}*/
 	}
-	else if (type == 'door') {
+	else if (type == 'door' || (type == 'locked' && actor.locked == false)) {
 		this.status = 'won';
 	}
+	else if (type == 'key') {
+		this.actors = this.actors.filter(function(other) {
+			if (other.type =='locked') other.locked = false;
+			return other != actor;
+		});
+	}
+	else if (type == 'locked' && actor.locked == true)
+		alert('It\'s locked.');
 };
 
 var playerXSpeed = 1.6;
 var gravity = 4.1;
-var jumpSpeed = 6;
+var jumpSpeed = 6.2;
 var scale = 22;
 var maxStep = .05;
 
@@ -194,6 +228,7 @@ Level.prototype.animate = function(step, keys) {
 	while (step > 0) {
     	var thisStep = Math.min(step, maxStep);
    		this.actors.forEach(function(actor) {
+   			if(actor.act != undefined)
     		actor.act(thisStep, this, keys);
     	}, this);
     	if(this.darkness)
@@ -230,15 +265,30 @@ Level.prototype.obstacleAt = function (pos, size) {
 	}
 };
 function Door(ch, pos) {
-	this.pos = pos.plus(new Vector(0, -1));
-	this.size = new Vector(10/8, 10/5);
+	this.pos = pos.plus(new Vector(0, -1.5));
+	this.size = new Vector(1.5, 3);
 }
-//stores player properties
+Door.prototype.type = 'door';
+function Locked(ch, pos) {
+	this.pos = pos.plus(new Vector(0, -1.5));
+	this.size = new Vector(1.5, 3);
+	this.locked = true;
+}
+Locked.prototype.type = 'locked';
+function Key(ch, pos) {
+	this.pos = pos.plus(new Vector(0, 0));
+	this.size = new Vector (1, 1);
+}
+Key.prototype.type = 'key';
+Key.prototype.act = function() {
+	null;
+};
 function Player(ch, pos) {
 	this.speed = new Vector(0, 0);
 	this.pos = pos.plus(new Vector(0, -1));
 	//this.size = new Vector(.8, 1.8);
 	this.size = new Vector(.94, 1.9)
+	//this.size = new Vector( 1, 2);
 }
 Player.prototype.type = 'player';
 //passes its arguments to moveX and moveY and calls them, and if there is an actor at
@@ -305,6 +355,7 @@ var arrowCodes = {37: "left", 38: "up", 39: "right"};
 function trackKeys(codes) {
   var pressed = Object.create(null);
   function handler(event) {
+  	console.log(event);
     if (codes.hasOwnProperty(event.keyCode)) {
       var down = event.type == "keydown";
       pressed[codes[event.keyCode]] = down;
@@ -348,7 +399,7 @@ Lava.prototype.act = function(step, level) {
 };
 //stores coin properties
 function Coin(ch, pos) {
-	this.pos = pos;
+	this.pos = pos.plus(new Vector(.25, .25));
 	this.size = new Vector(.5, .5);
 }
 function Darkness(level) {
@@ -473,11 +524,11 @@ function flipHorizontally(context, around) {
   context.translate(-around, 0);
 }
 var playerSprite = document.createElement('img');
-playerSprite.src = 'img/solidplayer.svg';
+playerSprite.src = 'img/plato.svg';
 CanvasDisplay.prototype.drawPlayer = function(x, y, width, height) {
 	var player = this.level.player;
-	//width += 3.15 * 2; //lantern hangs out
-	//x -= 3.15;
+	width += 3.15 * 2; //lantern hangs out
+	x -= 3.15;
 	if(player.speed.x != 0)
 		this.flipPlayer = player.speed.x < 0;
 
@@ -493,10 +544,20 @@ CanvasDisplay.prototype.drawActors = function() {
 		var height = actor.size.y * scale;
 		var x = (actor.pos.x - this.viewport.left) * scale;
 		var y = (actor.pos.y - this.viewport.top) * scale;
+		var tileX;
 		if (actor.type == 'player') {
 			this.drawPlayer(x, y, width, height);
-		} else {
-			var tileX = (actor.type == 'coin' ? 2.5 : 2) * scale;
+		}
+
+		else if (actor.type == 'lava') tileX = 2 * scale;
+		else if (actor.type == 'coin') tileX = 3 * scale;
+		else if (actor.type == 'key') tileX = 3.5 * scale;
+		else if (actor.type == 'door' || actor.type == 'locked'){
+			this.cx.drawImage(otherSprites,
+							4.5 * scale, 0, width, height,
+							x,			 y,		width * 2.5, height * 2.5);
+		}
+		if(tileX){
 			this.cx.drawImage(otherSprites,
 							  tileX, 0, width, height,
 							  x,	 y, width, height);
