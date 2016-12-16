@@ -50,7 +50,7 @@ var GAME_LEVELS = [
 	 '                                                    o                      x   x          ',
 	 '                                                    x                 o    x   x          ',
 	 '                               o                                               x          ',
-	 '                               m                           x      =            x          ',
+	 '                               m     o         o           x      =            x          ',
 	 '                                     m         x                               x          ',
 	 '                                                                  xxxxxxxxxxxxxx          ',
 	 '                                                                                          ',
@@ -122,6 +122,12 @@ var GAME_LEVELS = [
 	 ],
 ];
 
+var playerXSpeed = 1.6;
+var gravity = 4.1;
+var jumpSpeed = 6.2;
+var scale = 22;
+var maxStep = .05;
+
 function Level(plan) {
 	this.width = plan[0].length;
 	this.height = plan.length;
@@ -146,6 +152,7 @@ function Level(plan) {
 			var fieldType = null;
 			if (Actor)
 				this.actors.push(new Actor(ch, new Vector(x, y)));
+			//treats 'l' as an empty space and makes the level dark
 			else if (ch == 'l'){
 				fieldType = 'null';
 				this.darkness = new Darkness(this);
@@ -192,7 +199,7 @@ Level.prototype.playerTouched = function(type, actor) {
 		this.actors = this.actors.filter(function(other) {
 			return other != actor;
 		});
-		this.darkness.radius += 20;
+		this.darkness.radius += 25;
 		/*
 		if (!this.actors.some(function(actor) {
       		return actor.type == "coin";
@@ -211,14 +218,8 @@ Level.prototype.playerTouched = function(type, actor) {
 		});
 	}
 	else if (type == 'locked' && actor.locked == true)
-		alert('It\'s locked.');
+		console.log('It\'s locked.');
 };
-
-var playerXSpeed = 1.6;
-var gravity = 4.1;
-var jumpSpeed = 6.2;
-var scale = 22;
-var maxStep = .05;
 
 //calls .act on each actor and subtracts step by maxStep. repeats until step = 0
 Level.prototype.animate = function(step, keys) {
@@ -264,6 +265,10 @@ Level.prototype.obstacleAt = function (pos, size) {
 		}
 	}
 };
+
+//doors and keys are not actors and probably fit better in their own array
+//so that no error is thrown by .animate when it tries to call an .act method on
+//all the actors. for now, to avoid the error, Key.prototype.act == function(){null;};
 function Door(ch, pos) {
 	this.pos = pos.plus(new Vector(0, -1.5));
 	this.size = new Vector(1.5, 3);
@@ -283,6 +288,7 @@ Key.prototype.type = 'key';
 Key.prototype.act = function() {
 	null;
 };
+
 function Player(ch, pos) {
 	this.speed = new Vector(0, 0);
 	this.pos = pos.plus(new Vector(0, -1));
@@ -355,7 +361,6 @@ var arrowCodes = {37: "left", 38: "up", 39: "right"};
 function trackKeys(codes) {
   var pressed = Object.create(null);
   function handler(event) {
-  	console.log(event);
     if (codes.hasOwnProperty(event.keyCode)) {
       var down = event.type == "keydown";
       pressed[codes[event.keyCode]] = down;
@@ -457,7 +462,7 @@ function CanvasDisplay(parent, level) {
 		width: this.canvas.width / scale,
 		height: this.canvas.height / scale
 		};
-	this.drawFrame(0); //?
+	this.drawFrame(0);
 }
 CanvasDisplay.prototype.clear = function() {
 	this.canvas.parentNode.removeChild(this.canvas);
@@ -564,13 +569,6 @@ CanvasDisplay.prototype.drawActors = function() {
 		}
 	}, this);
 };
-
-//is this used?
-function setAttributes(el, attrs) {
-  for(var key in attrs) {
-    el.setAttribute(key, attrs[key]);
-  }
-}
 
 function runAnimation(frameFunc) {
 	var lastTime = null;
