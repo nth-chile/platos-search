@@ -1,3 +1,3 @@
 # platos-search
 
-Download, extract, and run index.html
+Download, extract files, and run index.html
