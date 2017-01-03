@@ -3,9 +3,61 @@
 	<head>
 		<meta http-equiv="content-type" content="text/html; charset=utf-8">
 		<title>Plato's Search</title>
-		<link href="https://fonts.googleapis.com/css?family=VT323" rel="stylesheet">
+		<!-- <link href="https://fonts.googleapis.com/css?family=VT323" rel="stylesheet"> -->
+		<link href='style.css' rel='stylesheet'>
+		<link rel="stylesheet" href="jquery/jquery-ui.css">
+		<script src="jquery/external/jquery/jquery.js"></script>
+		<script src="jquery/jquery-ui.min.js"></script>
 	</head>
 	<body>
+
+	<div id="game">
+		<div id="mute"></div>
+	  	<!-- <div id="dialog">Find an honest man.</div> -->
+	</div>
+
+	<audio id="preloop" autoplay>
+		<source src="preloop.mp3" />
+	</audio>
+
+	<audio id="loop" preload="auto" loop>
+		<source src="loop.mp3" />
+	</audio>
+
 	</body>
+
+ 
+	<script>
+	// $( "#dialog" ).dialog({
+	// 	appendTo: "#game",
+	// 	autoOpen: true,
+	// 	buttons: [
+	// 		{
+	// 		text: "OK",
+	// 		click: function() {
+	// 		$( this ).dialog( "close" );
+	// 		}
+	// 	}
+	// ],
+	// 	width: 250
+		
+	// });
+
+	// $('#dialog').dialog('widget').position({
+	// 	my: "top",
+	// 	at: "center",
+	// 	of: "#game",
+	// 	collision: "none"
+	// });
+	</script>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+	<script>
+	  WebFont.load({
+	    google: {
+	      families: ['VT323']
+	    }
+	  });
+	</script>
 	<script type="text/javascript" src="platos-search.js"></script>
 </html>

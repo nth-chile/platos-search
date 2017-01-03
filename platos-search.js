@@ -7,6 +7,13 @@ var GAME_LEVELS = [
 	 '                                                        ',
 	 '                                                        ',
 	 '                                                        ',
+	 '                                                        ',
+	 '                                                        ',
+	 '                                                        ',
+	 '                                                        ',
+	 '                                                        ',
+	 '                                                        ',
+	 '                                                        ',
 	 '                                  g                     ',
 	 '                                  p                     ',
 	 '                                 ppp                    ',
@@ -69,6 +76,25 @@ var GAME_LEVELS = [
 	 'nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn',
 	 '                                                                                 ',
 	 ],
+
+	 // [
+	 // 'rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr',
+	 // '                                c                                           g     ',
+	 // '                          nnnnnnnnnnnnnnnnnnnnnnnn                          g     ',
+	 // '                                                                            g     ',
+	 // '                      p       p                     ===                     g     ',
+	 // '                      p       p            ========                         g     ',
+	 // '                      p   @g  p                   x    =      x             g     ',
+	 // '                      p       p                                             g     ',
+	 // '        m!!!m         p       p              =======                        g     ',
+	 // '        mmmmm         p       p                                             g     ',
+	 // '        nnnnn         p       p                                             g     ',
+	 // '        nnnnn         p       p                                             g     ',
+	 // '        n c n                                                    xxxxx      g     ',
+	 // '        nnnnn             m                                     xxxxxxx     g     ',
+	 // 'mmmmmmmmmmmmmmmmmmmmmmmmm    mmmmmmmmmmmmmmmmmmm     @        xxxxxxxxxx | dg     ',
+	 // '!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! rrrrrrrrrrrrrrrrrrrrrrrrrrrrrr    ',
+	 // ],
 
 	 [
 	 '                  v                                                                ',
@@ -258,13 +284,10 @@ var playerSprite = document.createElement('img');
 playerSprite.src = 'img/plato.svg';
 
 var otherChars = document.createElement('img');
-otherChars.src = 'img/otherCharslofi.svg';
+otherChars.src = 'img/otherchars.svg';
 
 var otherSprites = document.createElement('img');
-otherSprites.src = 'img/sprites2.svg';
-
-var specialSprites = document.createElement('img');
-specialSprites.src = 'img/specialSprites.svg';
+otherSprites.src = 'img/sprites.svg';
 
 var backgroundColors = [
 'rgb(186, 183, 94)', //gold
@@ -399,7 +422,7 @@ Level.prototype.playerTouched = function(type, actor) {
 		}
 	}
 	else if (type == 'king') {
-		this.text = '\'Climb the stairs, and you will find a gold cup.\'';
+		this.text = '\'You want to be ABOVE the rest. Climb the stairs and become rich.\'';
 	}
 	else if (type == 'commoner') {
 		this.text = '\'An honest man? I think I saw him go down into that hole.\'';
@@ -408,11 +431,43 @@ Level.prototype.playerTouched = function(type, actor) {
 		this.text = '\'Stop this silly search. Jump into the lava and join the Immortals.\'';
 	}
 };
+
+function getLines(ctx, text, maxWidth) {
+    var words = text.split(" ");
+    var lines = [];
+    var currentLine = words[0];
+    for (var i = 1; i < words.length; i++) {
+        var word = words[i];
+        var width = ctx.measureText(currentLine + " " + word).width;
+        if (width < maxWidth) {
+            currentLine += " " + word;
+        } else {
+            lines.push(currentLine);
+            currentLine = word;
+        }
+    }
+    lines.push(currentLine);
+    return lines;
+	}
+
 CanvasDisplay.prototype.drawText = function() {
-	this.cx.font = "15px VT323";
+	this.cx.font = "20px VT323";
 	if(this.level.text) {
-		this.cx.fillStyle = "white";
-  		this.cx.fillText(this.level.text, 10, 50);
+		var lines = getLines.call(this, this.cx, this.level.text, 450);
+   		console.log('lines:', lines);
+	    this.cx.save();
+	    this.cx.textBaseline = 'top';
+	    var lineY = 280;
+	    lines.forEach(function(line) {
+	    	lineY += parseInt("20px VT323", 10);
+	    	this.cx.fillStyle = 'black';
+	    	var width = this.cx.measureText(line).width;
+	    	var lineX = this.canvas.width / 2 - width / 2;
+		    this.cx.fillRect(lineX, lineY, width, parseInt("20px VT323", 10));
+		    this.cx.fillStyle = 'white';
+		    this.cx.fillText(line, lineX, lineY);
+	    }, this);
+	    this.cx.restore();
   	}
 };
 
@@ -665,23 +720,25 @@ function elt(elt, classname) {
 	return element;
 }
 
-function CanvasDisplay(parent, level) {
+function CanvasDisplay(parent, level, startscreen) {
 	this.canvas = document.createElement('canvas');
 	this.canvas.width = Math.min(550, level.width * scale);
 	this.canvas.height = Math.min(370, level.height * scale);
 	parent.appendChild(this.canvas);
 	this.cx = this.canvas.getContext('2d');
-	this.level = level;
 	this.animationTime = 0;
-	this.flipPlayer = false;
 	this.viewport = {
-		left: 0,
-		top: 0,
-		width: this.canvas.width / scale,
-		height: this.canvas.height / scale
-		};
+			left: 0,
+			top: 0,
+			width: this.canvas.width / scale,
+			height: this.canvas.height / scale
+			};
+	if (startscreen) return;
+	this.flipPlayer = false;
+	this.level = level;
 	this.drawFrame(0);
 }
+
 CanvasDisplay.prototype.clear = function() {
 	this.canvas.parentNode.removeChild(this.canvas);
 };
@@ -773,6 +830,7 @@ CanvasDisplay.prototype.drawActors = function() {
 		if (actor.type == 'lava' || actor.type == 'heavensDoor') tileX = 2 * scale;
 		else if (actor.type == 'coin') tileX = Math.ceil(3 * scale);
 		else if (actor.type == 'key') tileX = 3.5 * scale;
+		else if (actor.type == 'grail') tileX = 8 * scale;
 		else if (actor.type == 'door') {
 			this.cx.drawImage(otherSprites,
 							4.5 * scale, 0, width / 2, height / 2,
@@ -786,11 +844,6 @@ CanvasDisplay.prototype.drawActors = function() {
 		else if (actor.type == 'king') charX = 3 * scale;
 		else if (actor.type == 'player') {
 			this.drawPlayer(x, y, width, height);
-		}
-		else if (actor.type == 'grail') {
-			this.cx.drawImage(specialSprites,
-							  0, 0, width, height,
-							  x, y, width, height);
 		}
 		if(tileX) {
 			this.cx.drawImage(otherSprites,
@@ -822,7 +875,7 @@ function runAnimation(frameFunc) {
 
 var arrows = trackKeys(arrowCodes);
 function runLevel(level, Display, andThen) {
-	var display = new Display(document.body, level);
+	var display = new Display(document.getElementById('game'), level);
 	runAnimation(function(step) {
 		level.animate(step, arrows);
 		display.drawFrame();
@@ -832,9 +885,9 @@ function runLevel(level, Display, andThen) {
      		display.clear();
      		if (andThen)
         		andThen(level.status);
-      		return false;
-   		}
-  });
+     		return false;
+     	}
+	});
 }
 function runGame(plans, Display) {
   function startLevel(n) {
@@ -851,5 +904,116 @@ function runGame(plans, Display) {
   }
   startLevel(3);
 }
-runGame(GAME_LEVELS, CanvasDisplay);
-alert('Find an honest man. \nDon\'t use the doors on the left that\'s cheating.');
+
+function startAlert() {
+	var gamediv = document.getElementById('game');
+	var overlay = document.createElement('div');
+	overlay.id = 'overlay';
+	gamediv.appendChild(overlay);
+	var alert = elt('div');
+	alert.id = 'dialog';
+	alert.innerHTML = 'Objective:\<br\>Find an honest man.';
+	document.body.appendChild(alert);
+		$( "#dialog" ).dialog({
+		appendTo: "#game",
+		autoOpen: true,
+		buttons: [
+			{
+			text: "Close",
+			click: function() {
+			$( this ).dialog( "close" );
+			gamediv.removeChild(overlay);
+			}
+		}
+	],
+		width: 250
+		
+	});
+
+	$('#dialog').dialog('widget').position({
+		my: "center",
+		at: "center",
+		of: "#game",
+		collision: "none"
+	});
+}
+
+function Audio() {
+	this.button = document.getElementById('mute');
+	this.tracks = {
+		preloop: document.getElementById('preloop'),
+		loop: document.getElementById('loop')
+		};
+	this.current = this.tracks.preloop;
+	console.log(this.current);
+	this.tracks.preloop.onended = function() {
+		this.current = this.tracks.loop;
+		this.current.play();
+		if(this.isMuted) this.current.muted = !this.current.muted;
+		console.log(this.current);
+	}.bind(this);
+	this.toggleMute = function() {
+		this.current.muted = !this.current.muted;
+		if (!this.current.muted) this.button.style.backgroundPosition = '0px';
+		else this.button.style.backgroundPosition = '-22px';
+		this.isMuted = !this.isMuted;
+	};
+	this.isMuted = false;
+}
+
+function startGame() {
+var startscreen = {
+	width: 550,
+	height: 370,
+	background: document.createElement('img'),
+	flicker: document.createElement('img'),	
+};
+startscreen.background.src = 'img/startscreen.svg';
+startscreen.flicker.src = 'img/caveflicker.svg';
+
+var textcanvas = {
+	width: 270 / scale,
+	height:25 / scale,
+}
+
+var display = new CanvasDisplay(document.getElementById('game'), startscreen, true);
+var audio = new Audio();
+
+startscreen.background.onload = function() {
+	display.cx.drawImage(startscreen.background, 0, 0);
+	audio.button.addEventListener('click', function (e) {
+	audio.toggleMute();
+	});
+};
+
+ window.setInterval(function() {
+ 	if(Math.random() > .85)
+ 		display.cx.drawImage(startscreen.flicker, 0, 0);
+ 	else
+ 		display.cx.drawImage(startscreen.background, 0, 0);
+ }, 90);
+isClear = true;
+var textCanvas = new CanvasDisplay(document.getElementById('game'), textcanvas, true);
+textCanvas.canvas.id = 'text-canvas';
+var textFlash = setInterval(function() {
+	if (isClear == true) {
+		isClear = !isClear;
+		textCanvas.cx.font = "20px VT323";
+ 		textCanvas.cx.fillStyle = "white";
+ 		textCanvas.cx.fillText('press any key to start', 0, 15);
+	} else {
+		textCanvas.cx.clearRect(0,0, textcanvas.width * scale, textcanvas.height * scale);
+		isClear = true;
+	}
+ }, 1000);
+
+
+addEventListener('keypress', function() {
+	clearInterval(textFlash);
+	textCanvas.clear();
+	display.clear();
+	runGame(GAME_LEVELS, CanvasDisplay);
+	startAlert();
+});
+}
+startGame();
