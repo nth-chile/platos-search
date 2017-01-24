@@ -83,7 +83,7 @@ var GAME_LEVELS = [
 		 '                                                                                                                                                 ',
 		 '                                                                        e                                                                        ',
 		 '                                                                                                                                                 ',
-		 '       3                   f                    i                                                                                               3',
+		 '                           f                    i                                                                                               3',
 		 'nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn',
 		 '                                                                                                                                                 ',
 		 '                                                                                                                                                 ',
@@ -168,7 +168,7 @@ var GAME_LEVELS = [
 		 '                                                       mxxxxxxxxxxxxxxxxxxxxxxxxxxx',
 		 '                                                      mxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
 		 '                                                     mxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-		 '  d @                                               mxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
+		 '    @                                               mxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
 		 'mmmmmmmmmmmmmmmmm   mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
 		 'xxxxxxxxxxxxxxxxx!!!xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
 		 ],
@@ -207,7 +207,7 @@ var GAME_LEVELS = [
 		 '                        r                                                                 ',
 		 '                       r                                                                  ',
 		 '                                                                                          ',
-		 '  d @    o                                                                              d ',
+		 '    @    o                                                                              d ',
 		 'rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr!!!!!!!!!!!!!!!!!!!!!!!!!rrrrrrrrrrrrrrrrrrrrrrrr',
 		 ],
 		 //dark
@@ -241,7 +241,7 @@ var GAME_LEVELS = [
 		 'rrrrr  rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr                                    ',
 		 '                                                                                          ',
 		 '                                                                                          ',
-		 '    d @    o    o    o    o    o                                                          ',
+		 '      @    o    o    o    o    o                                                          ',
 		 'mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm',
 		 ],
 		 //purple
@@ -266,7 +266,7 @@ var GAME_LEVELS = [
 		 '    r                          o  | rrrrrrrrrrrrrrrrrrrrr    rrrrrrrrrrrrrrrrrrrrrrrrrrrrr',
 		 '    r                          r     rrrrrrrrrrrrrrrrrrrr                                 ',
 		 '    r    o                           rrrrrrrrrrrrrrrrrrrrr                                ',
-		 '    rd @                             rrrrrrrrrrrrrrrrrrrrrr                               ',
+		 '    r  @                             rrrrrrrrrrrrrrrrrrrrrr                               ',
 		 '    rrrrrrrrrrrrrrrrrrrrrrrrrrrrr    rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr    ',
 		 '                           rrrrro                                                         ',
 		 '                           rrrrr      =                                                   ',
@@ -303,7 +303,7 @@ var GAME_LEVELS = [
 		 '                      a          b              c                              d ',
 		 '            mmmm  mmmmmmmmmmmmmmmmmm  mmmmmmmmmmmm  mmmmmmmmmmmmmmmmmmmmmmmmmmmmm',
 		 '           mxxxx!!xxxxxxxxxxxxxxxxxx  xxxxxxxxxxxx22xxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-		 'd @ 2     mxxxxxxxxxxxxxxxxxxxxxxxxx  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
+		 '  @       mxxxxxxxxxxxxxxxxxxxxxxxxx  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
 		 'mmmmmmmmmmxxxxxxxxxxxxxxxxxxxxxxxxxx  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
 		 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
 		 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
@@ -1210,7 +1210,7 @@ function Audo() {
 		this.play('loop');
 	});
 	this.solarboat = new Howl({
-		src: ['solarboat.mp3'];
+		src: ['solarboat.mp3']
 		//cloud app link for working locally (since it must be a url)
 		//src: ['https://d17oy1vhnax1f7.cloudfront.net/items/2Z3A022R0g3c2v3r1O19/solarboat.mp3'],
 		//test sound
