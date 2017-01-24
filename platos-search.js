@@ -73,7 +73,7 @@ var GAME_LEVELS = [
 		 '                                                                                                                                                 ',
 		 '                                                                                                                                                 ',
 		 '                                                                                                                                                 ',
-		 '                                                                            h                                                     j              ',
+		 '                                                                                                                                                 ',
 		 '                                          n                                 n                           n                         nn             ',
 		 '                                                                                      n                                                          ',
 		 '                                                                                                                                                 ',
@@ -81,9 +81,9 @@ var GAME_LEVELS = [
 		 '                                                                                                                                                 ',
 		 '                                                                                                                                                 ',
 		 '                                                                                                                                                 ',
-		 '                                                                        e                                                                        ',
 		 '                                                                                                                                                 ',
-		 '                           f                    i                                                                                               3',
+		 '                                                                                                                                                 ',
+		 '                           f                                                                                                                    3',
 		 'nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn',
 		 '                                                                                                                                                 ',
 		 '                                                                                                                                                 ',
@@ -168,7 +168,7 @@ var GAME_LEVELS = [
 		 '                                                       mxxxxxxxxxxxxxxxxxxxxxxxxxxx',
 		 '                                                      mxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
 		 '                                                     mxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-		 '    @                                               mxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
+		 '    @   2                                           mxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
 		 'mmmmmmmmmmmmmmmmm   mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
 		 'xxxxxxxxxxxxxxxxx!!!xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
 		 ],
@@ -558,6 +558,9 @@ Level.prototype.playerTouched = function(type, actor) {
 				textScreen++;
 				this.text = textArray[textScreen];
 			} else {
+				setTimeout(function() {
+					this.actors.splice(1, 1);
+				}.bind(this), 6000);
 				actor.speed = new Vector(2, 0);
 				Object.getPrototypeOf(this.player).act = playerAct;
 				removeEventListener('keypress', boundHandler);
@@ -1088,7 +1091,9 @@ function runLevel(level, Display, andThen) {
 		if(audio.isMuted() == true) audio.toggleMute();
 		audio.current.pause();
 		audio.current = audio.solarboat;
-		audio.current.play();
+		setTimeout(function() {
+			audio.current.play();
+		}, 1000);
 		audio.current.once('end', function() {
 			var blackScreen = document.createElement('div');
 			blackScreen.id = 'black-screen';
@@ -1145,7 +1150,6 @@ function runLevel(level, Display, andThen) {
 }
 function runGame(plans, Display) {
   function startLevel(n) {
-  	console.log(n);
     runLevel(new Level(plans[n], n), Display, function(status) {
     if (status == "lost")
     	startLevel(n);
