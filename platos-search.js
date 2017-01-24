@@ -21,7 +21,7 @@ var GAME_LEVELS = [
 		 '                                  p                     ',
 		 '                                 ppp                    ',
 		 '                                ppppp                   ',
-		 ' @                             ppppppp                  ',
+		 ' @                             ppppppp                 8',
 		 'pppppppppppppppppppppppppppppppppppppppppppppppppppppppp',
 		 ],
 		 //gold
@@ -168,7 +168,7 @@ var GAME_LEVELS = [
 		 '                                                       mxxxxxxxxxxxxxxxxxxxxxxxxxxx',
 		 '                                                      mxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
 		 '                                                     mxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-		 '    @                                               mxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
+		 '  d @                                               mxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
 		 'mmmmmmmmmmmmmmmmm   mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
 		 'xxxxxxxxxxxxxxxxx!!!xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
 		 ],
@@ -207,7 +207,7 @@ var GAME_LEVELS = [
 		 '                        r                                                                 ',
 		 '                       r                                                                  ',
 		 '                                                                                          ',
-		 '    @    o                                                                              d ',
+		 '  d @    o                                                                              d ',
 		 'rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr!!!!!!!!!!!!!!!!!!!!!!!!!rrrrrrrrrrrrrrrrrrrrrrrr',
 		 ],
 		 //dark
@@ -241,7 +241,7 @@ var GAME_LEVELS = [
 		 'rrrrr  rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr                                    ',
 		 '                                                                                          ',
 		 '                                                                                          ',
-		 '      @    o    o    o    o    o                                                          ',
+		 '    d @    o    o    o    o    o                                                          ',
 		 'mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm',
 		 ],
 		 //purple
@@ -266,7 +266,7 @@ var GAME_LEVELS = [
 		 '    r                          o  | rrrrrrrrrrrrrrrrrrrrr    rrrrrrrrrrrrrrrrrrrrrrrrrrrrr',
 		 '    r                          r     rrrrrrrrrrrrrrrrrrrr                                 ',
 		 '    r    o                           rrrrrrrrrrrrrrrrrrrrr                                ',
-		 '    r  @                             rrrrrrrrrrrrrrrrrrrrrr                               ',
+		 '    rd @                             rrrrrrrrrrrrrrrrrrrrrr                               ',
 		 '    rrrrrrrrrrrrrrrrrrrrrrrrrrrrr    rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr    ',
 		 '                           rrrrro                                                         ',
 		 '                           rrrrr      =                                                   ',
@@ -303,7 +303,7 @@ var GAME_LEVELS = [
 		 '                      a          b              c                              d ',
 		 '            mmmm  mmmmmmmmmmmmmmmmmm  mmmmmmmmmmmm  mmmmmmmmmmmmmmmmmmmmmmmmmmmmm',
 		 '           mxxxx!!xxxxxxxxxxxxxxxxxx  xxxxxxxxxxxx22xxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-		 '  @       mxxxxxxxxxxxxxxxxxxxxxxxxx  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
+		 'd @       mxxxxxxxxxxxxxxxxxxxxxxxxx  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
 		 'mmmmmmmmmmxxxxxxxxxxxxxxxxxxxxxxxxxx  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
 		 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
 		 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
@@ -313,7 +313,7 @@ var GAME_LEVELS = [
 	 	 'xxxxxxxxxxxxxxxxxxx!!!!!!!!!!!!!!!!!         r!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!',
 	 	 'xxxxxxxxxxxxxxxxxxx!!!!!!!!!!!!!!!!!rrrrr     v!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!',
 	 	 'xxxxxxxxxxxxxxxxxxx!!!!!!!!!!!!!!!!!!!!!!      r!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!',
-		 'xxxxxxxxxxxxxxxxxxx!!!!!!!!!!!!!!!!!!!!!!                                    v   ',
+		 'xxxxxxxxxxxxxxxxxxx!!!!!!!!!!!!!!!!!!!!!!                                        ',
 		 '                   !!!!!!!!!!!!!!!!!!!!!!                                        ',
 		 '                   !!!!!!!!!!!!!!!!!!!!!!rrr                                     ',
 		 '                   !!!!!!!!!!!!!!!!!!!!!!rrr                                     ',
@@ -359,8 +359,9 @@ var GAME_LEVELS = [
 		 'rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr',
 		 ],
 		 //sky
-		 ['rgb(0, 0, 0)']
+		 ['rgb(0, 0, 1)']
 	],
+
 	[
 		 [
 		 '                                                                                                               ',
