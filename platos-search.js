@@ -1,82 +1,122 @@
+
+
 var GAME_LEVELS = [
 	 //door1
 	 [
-	 '                                                        ',
-	 '                                                        ',
-	 '                                                        ',
-	 '                                                        ',
-	 '                                                        ',
-	 '                                                        ',
-	 '                                                        ',
-	 '                                                        ',
-	 '                                                        ',
-	 '                                                        ',
-	 '                                                        ',
-	 '                                                        ',
-	 '                                                        ',
-	 '                                  g                     ',
-	 '                                  p                     ',
-	 '                                 ppp                    ',
-	 '                                ppppp                   ',
-	 ' @                             ppppppp                  ',
-	 'pppppppppppppppppppppppppppppppppppppppppppppppppppppppp',
+		 [
+		 '                                                        ',
+		 '                                                        ',
+		 '                                                        ',
+		 '                                                        ',
+		 '                                                        ',
+		 '                                                        ',
+		 '                                                        ',
+		 '                                                        ',
+		 '                                                        ',
+		 '                                                        ',
+		 '                                                        ',
+		 '                                                        ',
+		 '                                                        ',
+		 '                                  g                     ',
+		 '                                  p                     ',
+		 '                                 ppp                    ',
+		 '                                ppppp                   ',
+		 ' @                             ppppppp                  ',
+		 'pppppppppppppppppppppppppppppppppppppppppppppppppppppppp',
+		 ],
+		 //gold
+		 ['rgb(186, 183, 94)']
 	 ],
 	 //door2
 	 [
-	 '!    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!',
-	 '! @  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!',
-	 '!    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!',
-	 '!    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!',
-	 '!    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!',
-	 '!    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!',
-	 '!    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!',
-	 '!    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!',
-	 '!    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!',
-	 '!    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!',
-	 '!    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!',
-	 '!    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!',
-	 '!    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!',
-	 '!    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!',
-	 '!    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!',
-	 '!    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!',
-	 '!    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!',
-	 '               !!!!!!!!!!!!!!!!!!!!!!!!!!',
-	 '                !!!!!!!!!!!!!!!!!!!!!!!!!',
-	 '                 !!!!!!!!!!!!!!!!!!!!!!!!',
-	 '                                v        ',
-	 'xxxxxxxx                                 ',
-	 '!!!!!!!!xxx                              ',
-	 '!!!!!!!!!!!xx                            ',
-	 '!!!!!!!!!!!!!xx                          ',
-	 '!!!!!!!!!!!!!!!xx                        ',
-	 '!!!!!!!!!!!!!!!!x                      7 ',
-	 '!!!!!!!!!!!!!!!!!  xxxxx    xxxx xxxxxxxx',
-	 '!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!',
+		 [
+		 '!    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!',
+		 '! @  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!',
+		 '!    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!',
+		 '!    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!',
+		 '!    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!',
+		 '!    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!',
+		 '!    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!',
+		 '!    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!',
+		 '!    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!',
+		 '!    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!',
+		 '!    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!',
+		 '!    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!',
+		 '!    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!',
+		 '!    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!',
+		 '!    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!',
+		 '!    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!',
+		 '!    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!',
+		 '               !!!!!!!!!!!!!!!!!!!!!!!!!!',
+		 '                !!!!!!!!!!!!!!!!!!!!!!!!!',
+		 '                 !!!!!!!!!!!!!!!!!!!!!!!!',
+		 '                                v        ',
+		 'xxxxxxxx                                 ',
+		 '!!!!!!!!xxx                              ',
+		 '!!!!!!!!!!!xx                            ',
+		 '!!!!!!!!!!!!!xx                          ',
+		 '!!!!!!!!!!!!!!!xx                        ',
+		 '!!!!!!!!!!!!!!!!x                      8 ',
+		 '!!!!!!!!!!!!!!!!!  xxxxx    xxxx xxxxxxxx',
+		 '!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!',
+		 ],
+		 //orange
+		 ['rgb(252, 98, 60)']
 	 ],
 	 //heaven's door
 	 [
-	 '                                                                                 ',
-	 '                                                                                 ',
-	 '      @         n                                                                ',
-	 '                                                                                 ',
-	 '                                                                                 ',
-	 '                                                                                 ',
-	 '                                                                            n    ',
-	 '                                                                                 ',
-	 '                           n              n                                      ',
-	 '                       n              n                                          ',
-	 '                                                                    n            ',
-	 '                                                      n                          ',
-	 '                                                                                 ',
-	 '                                                                                 ',
-	 '                                                                                 ',
-	 '                                                                                 ',
-	 '                                                                                 ',
-	 '                                                                                 ',
-	 'nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn',
-	 '                                                                                 ',
+		 [
+		 '                                                                                                                                                 ',
+		 '                                                                                                                                                 ',
+		 '    @           n                                                                                                                                ',
+		 '                                                                                                                                                 ',
+		 '                                                                                                                                                 ',
+		 '                                                                                                                                                 ',
+		 '                                                                                                                                                 ',
+		 '                                                                            h                                                     j              ',
+		 '                                          n                                 n                           n                         nn             ',
+		 '                                                                                      n                                                          ',
+		 '                                                                                                                                                 ',
+		 '                                                      n                                                                                          ',
+		 '                                                                                                                                                 ',
+		 '                                                                                                                                                 ',
+		 '                                                                                                                                                 ',
+		 '                                                                        e                                                                        ',
+		 '                                                                                                                                                 ',
+		 '       3                   f                    i                                                                                               3',
+		 'nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn',
+		 '                                                                                                                                                 ',
+		 '                                                                                                                                                 ',
+		 '                                                                                                                                                 ',
+		 ],
+		 //light sky
+		 ['rgb(170, 255, 253)']
 	 ],
 
+	 [
+		 [
+		  '                          ',
+		  '                          ',
+		  '    n                     ',
+		  '                          ',
+		  '                          ',
+		  '                          ',
+		  '     e                    ',
+		  '  c     f   @  h i j      ',
+		  '                          ',
+		  '                          ',
+		  '                          ',
+		  '                          ',
+		  '                  n       ',
+		  '                          ',
+		  '                          ',
+		  '                          ',
+		  ],
+		  //light sky
+		  ['rgb(170, 255, 253)']
+	  ],
+
+	 //Felix's Level
 	 // [
 	 // 'rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr',
 	 // '                                c                                           g     ',
@@ -95,183 +135,256 @@ var GAME_LEVELS = [
 	 // 'mmmmmmmmmmmmmmmmmmmmmmmmm    mmmmmmmmmmmmmmmmmmm     @        xxxxxxxxxx | dg     ',
 	 // '!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! rrrrrrrrrrrrrrrrrrrrrrrrrrrrrr    ',
 	 // ],
+	 [
+		 [
+		 '                  v                                                                ',
+		 '                                                                                   ',
+		 '                                                                                   ',
+		 '                                                                                   ',
+		 '                                                                                   ',
+		 '                                                                                   ',
+		 '                                                                                   ',
+		 '                                                                                   ',
+		 '                                                                                   ',
+		 '                                                                                   ',
+		 '                                                                                   ',
+		 '                                                                                   ',
+		 '                                                                                  d',
+		 '                                                                      mmmmmmmmmmmmm',
+		 '                                                                     mxxxxxxxxxxxxx',
+		 '                                                                    mxxxxxxxxxxxxxx',
+		 '                                                                   mxxxxxxxxxxxxxxx',
+		 '                                                                  mxxxxxxxxxxxxxxxx',
+		 '                                                                 mxxxxxxxxxxxxxxxxx',
+		 '                                                                mxxxxxxxxxxxxxxxxxx',
+		 '                                                               mxxxxxxxxxxxxxxxxxxx',
+		 '                                                              mxxxxxxxxxxxxxxxxxxxx',
+		 '                                                             mxxxxxxxxxxxxxxxxxxxxx',
+		 '                                                            mxxxxxxxxxxxxxxxxxxxxxx',
+		 '                                                           mxxxxxxxxxxxxxxxxxxxxxxx',
+		 '                                                          mxxxxxxxxxxxxxxxxxxxxxxxx',
+		 '                                                         mxxxxxxxxxxxxxxxxxxxxxxxxx',
+		 '                                                        mxxxxxxxxxxxxxxxxxxxxxxxxxx',
+		 '                                                       mxxxxxxxxxxxxxxxxxxxxxxxxxxx',
+		 '                                                      mxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
+		 '                                                     mxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
+		 '  d @                                               mxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
+		 'mmmmmmmmmmmmmmmmm   mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
+		 'xxxxxxxxxxxxxxxxx!!!xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
+		 ],
+		 //sky
+		 ['rgb(79, 191, 247)'],
+	 ],
 
 	 [
-	 '                  v                                                                ',
-	 '                                                                                   ',
-	 '                                                                                   ',
-	 '                                                                                   ',
-	 '                                                                                   ',
-	 '                                                                                   ',
-	 '                                                                                   ',
-	 '                                                                                   ',
-	 '                                                                                   ',
-	 '                                                                                   ',
-	 '                                                                                   ',
-	 '                                                                                   ',
-	 '                                                                                  d',
-	 '                                                                      mmmmmmmmmmmmm',
-	 '                                                                     mxxxxxxxxxxxxx',
-	 '                                                                    mxxxxxxxxxxxxxx',
-	 '                                                                   mxxxxxxxxxxxxxxx',
-	 '                                                                  mxxxxxxxxxxxxxxxx',
-	 '                                                                 mxxxxxxxxxxxxxxxxx',
-	 '                                                                mxxxxxxxxxxxxxxxxxx',
-	 '                                                               mxxxxxxxxxxxxxxxxxxx',
-	 '                                                              mxxxxxxxxxxxxxxxxxxxx',
-	 '                                                             mxxxxxxxxxxxxxxxxxxxxx',
-	 '                                                            mxxxxxxxxxxxxxxxxxxxxxx',
-	 '                                                           mxxxxxxxxxxxxxxxxxxxxxxx',
-	 '                                                          mxxxxxxxxxxxxxxxxxxxxxxxx',
-	 '                                                         mxxxxxxxxxxxxxxxxxxxxxxxxx',
-	 '                                                        mxxxxxxxxxxxxxxxxxxxxxxxxxx',
-	 '                                                       mxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-	 '                                                      mxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-	 '                                                     mxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-	 'd   @                                               mxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-	 'mmmmmmmmmmmmmmmmm   mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-	 'xxxxxxxxxxxxxxxxx!!!xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
+		 [
+		 'l                                                                                         ',
+		 '                                                                                          ',
+		 '                                                                                          ',
+		 '                                                                                          ',
+		 '                                                                                          ',
+		 '                                                                   rrrrrrrrrrrrrrrrrrrrr  ',
+		 '                                                                                          ',
+		 '                                                              o                           ',
+		 '                                                              r              =            ',
+		 '                                                                                          ',
+		 '                                                         o                                ',
+		 '                                                         r   !!!!!!!!!rrrrrr   rrrrrrrrrrr',
+		 '                                                            vrrrrrrrrr     r   r          ',
+		 '                                                    o                      r   r          ',
+		 '                                                    r                 o    r   r          ',
+		 '                               o                                               r          ',
+		 '                               r     o         o           r      =            r          ',
+		 '                                     r         r                               r          ',
+		 '                                                                  rrrrrrrrrrrrrr          ',
+		 '                                                                                          ',
+		 '                                                                                          ',
+		 '                             rrrrrrrrrrrr  rrrrrrrrrrrr   r                               ',
+		 '                                                          r       r                       ',
+		 '                                                          r                               ',
+		 '                                       o                  r                               ',
+		 '                         rrrrrrrrrrrrrrrr                                                 ',
+		 '                        r                                                                 ',
+		 '                       r                                                                  ',
+		 '                                                                                          ',
+		 '  d @    o                                                                              d ',
+		 'rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr!!!!!!!!!!!!!!!!!!!!!!!!!rrrrrrrrrrrrrrrrrrrrrrrr',
+		 ],
+		 //dark
+		 ['rgb(25, 25, 56)']
 	 ],
-	 [
-	 'l                                                                                         ',
-	 '                                                                                          ',
-	 '                                                                                          ',
-	 '                                                                                          ',
-	 '                                                                                          ',
-	 '                                                                   rrrrrrrrrrrrrrrrrrrrr  ',
-	 '                                                                                          ',
-	 '                                                              o                           ',
-	 '                                                              r              =            ',
-	 '                                                                                          ',
-	 '                                                         o                                ',
-	 '                                                         r   !!!!!!!!!rrrrrr   rrrrrrrrrrr',
-	 '                                                            vrrrrrrrrr     r   r          ',
-	 '                                                    o                      r   r          ',
-	 '                                                    r                 o    r   r          ',
-	 '                               o                                               r          ',
-	 '                               r     o         o           r      =            r          ',
-	 '                                     r         r                               r          ',
-	 '                                                                  rrrrrrrrrrrrrr          ',
-	 '                                                                                          ',
-	 '                                                                                          ',
-	 '                             rrrrrrrrrrrr  rrrrrrrrrrrr   r                               ',
-	 '                                                          r       r                       ',
-	 '                                                          r                               ',
-	 '                                       o                  r                               ',
-	 '                         rrrrrrrrrrrrrrrr                                                 ',
-	 '                        r                                                                 ',
-	 '                       r                                                                  ',
-	 '                                                                                          ',
-	 'd   @    o                                                                              d ',
-	 'rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr!!!!!!!!!!!!!!!!!!!!!!!!!rrrrrrrrrrrrrrrrrrrrrrrr',
-	 ],
-	 [
-	 'l                   !r                               r        !        rrrrrrrrrrrrrrrrrrr',
-	 '!!!!!               !r                               r        v        rrrrrrrrrrrrrrrrrrr',
-	 'rrrr!               vr                               r                 rr!!!!!!!!!!!!!!!!!',
-	 'r   |                r                               r                 rr!!!!!!!!!!!!!!!!!',
-	 'r                    r                               r                 rr!!!!!!!!!!!!!!!!!',
-	 'r                    r                               r                 rr!!!!!!!!!!!!!!!!!',
-	 'r k     o  o  o      r                               r                 rr!!!!!!!!!!!!!!!!!',
-	 'r                    r      o   o   o                r                 rrr!!!!!!!!!!!!!!!!',
-	 'rmmmmmmmmmmmmmmmm    r                               r      rrrrrrrr    rrrrrrrrrrrrrrrrrr',
-	 '                r    r   rrrrrrrrrrrrrrrrrr    rrrr  r     =rrr     r    rrrrrrrrrrrrrrrrr',
-	 '                r    r                 rrrr=         r    r  r       r                    ',
-	 '                r   rr           =     rrrr    rrrr or       r        r                   ',
-	 '                r    r                 rrr     rrrr or       r         r                D ',
-	 '                r    rrrrrrrrrrrrrrr   rrr    rrrrr or       r          rrrrrrrrrrrrrrrrrr',
-	 '                rr                     rrr   =      or      rr                            ',
-	 '                rr  r         =        r     rrrrrr o                                     ',
-	 '   k            rr                     r     rrrrrr o                                     ',
-	 'rrrr            rr        rrrrrrrrrrrrrr            r                                     ',
-	 '          rrrrrrrrrrrrrrrrrrrrrrrrrrrrrr            rrrrrrrr                              ',
-	 '                                          r          r                                    ',
-	 '=                                                    r                                    ',
-	 '                                                     r                                    ',
-	 'rrrrr  rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr                                    ',
-	 '                                                                                          ',
-	 '                                                                                          ',
-	 '   d  @    o    o    o    o    o                                                          ',
-	 'mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm',
-	 ],
-	 [
 
-	 'l                                                                                         ',
-	 '                                                                                          ',
-	 '                                                                                          ',
-	 '    rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr             ',
-	 '    rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr                     rrr            ',
-	 '    rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr                         rrrr           ',
-	 '    rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr k                       rrrrr          ',
-	 '    rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr              rrrrrrrrr  rrrrrr         ',
-	 '    rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr           rrrrrrrrrr  rrrrrrr        ',
-	 '    rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr         rrrrrrrrrrr  rrrrrrrr  oo   ',
-	 '    r                             rrrrrrrrrrrrrrrrrrrr       rrrrrrrrrrrr            oo   ',
-	 '    r                             rrrrrrrrrrrrrrrrrrrrrrr   rrrrrrrrrrrrr                 ',
-	 '    r                          o  | rrrrrrrrrrrrrrrrrrrrr    rrrrrrrrrrrrrrrrrrrrrrrrrrrrr',
-	 '    r                          r     rrrrrrrrrrrrrrrrrrrr                                 ',
-	 '    r    o                           rrrrrrrrrrrrrrrrrrrrr                                ',
-	 '    rd @                             rrrrrrrrrrrrrrrrrrrrrr                               ',
-	 '    rrrrrrrrrrrrrrrrrrrrrrrrrrrrr    rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr    ',
-	 '                           rrrrro                                                         ',
-	 '                           rrrrr      =                                                   ',
-	 '                           rrrrr                                                          ',
-	 '                       d   rrrrr     rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr',
-	 'rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr',
-	 ],
 	 [
-	 '                                                                                 ',
-	 '                                                                                 ',
-	 '                                                                                 ',
-	 '                                                                               0 ',
-	 '                                                                              rrr',
-	 '                                                                             rrrr',
-	 '                                                                            rrrrr',
-	 '                                      rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr',
-	 '                                     r                                           ',
-	 '                                    r                                            ',
-	 '                                   r                                             ',
-	 '                                  r                                              ',
-	 '                                 r                                               ',
-	 '                                r                                                ',
-	 '                               r                                                 ',
-	 '                              r                                                  ',
-	 '                             r                                                   ',
-	 '                            r                                                    ',
-	 '                         rrr                                                     ',
-	 '                                                                                 ',
-	 '                      a          b              c                              d ',
-	 '            mmmmmmmmmmmmmmmmmmmmmmmm  mmmmmmmmmmmm  mmmmmmmmmmmmmmmmmmmmmmmmmmmmm',
-	 '           mxxxxxxxxxxxxxxxxxxxxxxxx  xxxxxxxxxxxx22xxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-	 ' @        mxxxxxxxxxxxxxxxxxxxxxxxxx  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-	 'mmmmmmmmmmxxxxxxxxxxxxxxxxxxxxxxxxxx  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-	 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-	 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
- 	 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx  xxxxxxxx!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!',
- 	 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx  xxxxxxxx!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!',
- 	 'xxxxxxxxxxxxxxxxxxx!!!!!!!!!!!!!!!!!         r!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!',
- 	 'xxxxxxxxxxxxxxxxxxx!!!!!!!!!!!!!!!!!         r!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!',
- 	 'xxxxxxxxxxxxxxxxxxx!!!!!!!!!!!!!!!!!rrrrr     v!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!',
- 	 'xxxxxxxxxxxxxxxxxxx!!!!!!!!!!!!!!!!!!!!!!      r!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!',
-	 'xxxxxxxxxxxxxxxxxxx!!!!!!!!!!!!!!!!!!!!!!                                    v   ',
-	 '                   !!!!!!!!!!!!!!!!!!!!!!                                        ',
-	 '                   !!!!!!!!!!!!!!!!!!!!!!rrr                                     ',
-	 '                   !!!!!!!!!!!!!!!!!!!!!!rrr                                     ',
-	 '                      !!!!!!!!!!!!!!!!!!!rrr                                   1 ',
-	 '                       !!!!!!!!!!!!!!!!!!rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr',
+		 [
+		 'l                   !r                               r        !        rrrrrrrrrrrrrrrrrrr',
+		 '!!!!!               !r                               r        v        rrrrrrrrrrrrrrrrrrr',
+		 'rrrr!               vr                               r                 rr!!!!!!!!!!!!!!!!!',
+		 'r   |                r                               r                 rr!!!!!!!!!!!!!!!!!',
+		 'r                    r                               r                 rr!!!!!!!!!!!!!!!!!',
+		 'r                    r                               r                 rr!!!!!!!!!!!!!!!!!',
+		 'r k     o  o  o      r                               r                 rr!!!!!!!!!!!!!!!!!',
+		 'r                    r      o   o   o                r                 rrr!!!!!!!!!!!!!!!!',
+		 'rmmmmmmmmmmmmmmmm    r                               r      rrrrrrrr    rrrrrrrrrrrrrrrrrr',
+		 '                r    r   rrrrrrrrrrrrrrrrrr    rrrr  r     =rrr     r    rrrrrrrrrrrrrrrrr',
+		 '                r    r                 rrrr=         r    r  r       r                    ',
+		 '                r   rr           =     rrrr    rrrr or       r        r                   ',
+		 '                r    r                 rrr     rrrr or       r         r                D ',
+		 '                r    rrrrrrrrrrrrrrr   rrr    rrrrr or       r          rrrrrrrrrrrrrrrrrr',
+		 '                rr                     rrr   =      or      rr                            ',
+		 '                rr  r         =        r     rrrrrr o                                     ',
+		 '   k            rr                     r     rrrrrr o                                     ',
+		 'rrrr            rr        rrrrrrrrrrrrrr            r                                     ',
+		 '          rrrrrrrrrrrrrrrrrrrrrrrrrrrrrr            rrrrrrrr                              ',
+		 '                                          r          r                                    ',
+		 '=                                                    r                                    ',
+		 '                                                     r                                    ',
+		 'rrrrr  rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr                                    ',
+		 '                                                                                          ',
+		 '                                                                                          ',
+		 '    d @    o    o    o    o    o                                                          ',
+		 'mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm',
+		 ],
+		 //purple
+		 ['rgb(45, 69, 122)']
 	 ],
+
 	 [
-	 '                                                                                 ',
-	 '                                                                                 ',
-	 '                                                                                 ',
-	 '                                                                                 ',
-	 '                                                                                 ',
-	 '                                                                                 ',
-	 '                                                                                 ',
-	 '                                                                                 ',
-	 ' @                                                                               ',
-	 'mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm',
+		 [
+
+		 'l                                                                                         ',
+		 '                                                                                          ',
+		 '                                                                                          ',
+		 '    rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr             ',
+		 '    rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr                     rrr            ',
+		 '    rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr                         rrrr           ',
+		 '    rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr k                       rrrrr          ',
+		 '    rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr              rrrrrrrrr  rrrrrr         ',
+		 '    rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr           rrrrrrrrrr  rrrrrrr        ',
+		 '    rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr         rrrrrrrrrrr  rrrrrrrr  oo   ',
+		 '    r                             rrrrrrrrrrrrrrrrrrrr       rrrrrrrrrrrr            oo   ',
+		 '    r                             rrrrrrrrrrrrrrrrrrrrrrr   rrrrrrrrrrrrr                 ',
+		 '    r                          o  | rrrrrrrrrrrrrrrrrrrrr    rrrrrrrrrrrrrrrrrrrrrrrrrrrrr',
+		 '    r                          r     rrrrrrrrrrrrrrrrrrrr                                 ',
+		 '    r    o                           rrrrrrrrrrrrrrrrrrrrr                                ',
+		 '    rd @                             rrrrrrrrrrrrrrrrrrrrrr                               ',
+		 '    rrrrrrrrrrrrrrrrrrrrrrrrrrrrr    rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr    ',
+		 '                           rrrrro                                                         ',
+		 '                           rrrrr      =                                                   ',
+		 '                           rrrrr                                                          ',
+		 '                       d   rrrrr     rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr',
+		 'rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr',
+		 ],
+		 //grey
+		 ['rgb(86, 86, 86)']
 	 ],
+
+	 [
+		 [
+		 '                                                                                 ',
+		 '                                                                                 ',
+		 '                                                                                 ',
+		 '                                                                               0 ',
+		 '                                                                              rrr',
+		 '                                                                             rrrr',
+		 '                                                                            rrrrr',
+		 '                                      rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr',
+		 '                                     r                                           ',
+		 '                                    r                                            ',
+		 '                                   r                                             ',
+		 '                                  r                                              ',
+		 '                                 r                                               ',
+		 '                                r                                                ',
+		 '                               r                                                 ',
+		 '                              r                                                  ',
+		 '                             r                                                   ',
+		 '                            r                                                    ',
+		 '                         rrr                                                     ',
+		 '                                                                                 ',
+		 '                      a          b              c                              d ',
+		 '            mmmm  mmmmmmmmmmmmmmmmmm  mmmmmmmmmmmm  mmmmmmmmmmmmmmmmmmmmmmmmmmmmm',
+		 '           mxxxx!!xxxxxxxxxxxxxxxxxx  xxxxxxxxxxxx22xxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
+		 'd @ 2     mxxxxxxxxxxxxxxxxxxxxxxxxx  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
+		 'mmmmmmmmmmxxxxxxxxxxxxxxxxxxxxxxxxxx  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
+		 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
+		 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx  xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
+	 	 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx  xxxxxxxx!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!',
+	 	 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx  xxxxxxxx!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!',
+	 	 'xxxxxxxxxxxxxxxxxxx!!!!!!!!!!!!!!!!!         r!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!',
+	 	 'xxxxxxxxxxxxxxxxxxx!!!!!!!!!!!!!!!!!         r!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!',
+	 	 'xxxxxxxxxxxxxxxxxxx!!!!!!!!!!!!!!!!!rrrrr     v!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!',
+	 	 'xxxxxxxxxxxxxxxxxxx!!!!!!!!!!!!!!!!!!!!!!      r!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!',
+		 'xxxxxxxxxxxxxxxxxxx!!!!!!!!!!!!!!!!!!!!!!                                    v   ',
+		 '                   !!!!!!!!!!!!!!!!!!!!!!                                        ',
+		 '                   !!!!!!!!!!!!!!!!!!!!!!rrr                                     ',
+		 '                   !!!!!!!!!!!!!!!!!!!!!!rrr                                     ',
+		 '                      !!!!!!!!!!!!!!!!!!!rrr                                   1 ',
+		 '                       !!!!!!!!!!!!!!!!!!rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr',
+		 ],
+		 //sky
+		 ['rgb(79, 191, 247)']
+	 ],
+
+	 [
+		 [
+		 'l                                                               ',
+		 '                                                                ',
+		 '                              k                                 ',
+		 '                                                                ',
+		 '                           rrrrrrr                              ',
+		 '                 rrrrrrrrrr       rrrrrrr                       ',
+		 '                r                        rr                     ',
+		 '               r              o            r                    ',
+		 '              r                             r                   ',
+		 '              r      rrrrrrrrrrrr            r               rrr',
+		 '             r      r            rrrrr       r         rrrrrr   ',
+		 '             r     r           =      r      r       rr         ',
+		 '        r    r     r                  r      r      r           ',
+		 '   rr       r     r  rrrr             r      r      r           ',
+		 '            r  o   rr    r           r       r     r           D',
+		 '            r             r         r       r     r       rrrrrr',
+		 '             r      o      r       r       r      r      r      ',
+		 'r             rr        o   r      r       r      r      r      ',
+		 '                rrrrr       r     r       r      r      r       ',
+		 '                     r      r     r      r!!!!!!!r      r       ',
+		 '    r                 r  o  r     r       r!!!!!!r      r       ',
+		 '    r    rrrr       rr     r   r  r        r!!!!r       r       ',
+		 '     rrrr      r  rr   o   r               r!!rr       r        ',
+		 '                rr        r         r   o   rr        r         ',
+		 '                          r   r     r                r          ',
+		 '               o    o    r           r             rr           ',
+		 '      rrrrrrr           r             rr         rr             ',
+		 '    rr       r        rr                rrrrrrrrr               ',
+		 '   r          rrrrrrrr          r                               ',
+		 '@                                                               ',
+		 'rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr',
+		 ],
+		 //sky
+		 ['rgb(0, 0, 0)']
+	],
+	[
+		 [
+		 '                                                                                                               ',
+		 '                                                                                                               ',
+		 '                                                                                                               ',
+		 '                                                                                                               ',
+		 '                                                                                                               ',
+		 '                                                                                                               ',
+		 '                                                                                                               ',
+		 '                                                                                                               ',
+		 'rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr',
+		 '                                                                                                               ',
+		 '                                                                                                               ',
+		 '                                                                                                               ',
+		 '@                                                                                                             8',
+		 'rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr',
+		 '                                                                                                               ',
+		 '                                                                                                               ',
+		 '                                                                                                               ',
+		 '                                                                                                               ',
+		 ],
+		 //sky
+		 ['rgb(79, 191, 247)']
+	]
 ];
 
 var playerXSpeed = 1.6;
@@ -289,22 +402,11 @@ otherChars.src = 'img/otherchars.svg';
 var otherSprites = document.createElement('img');
 otherSprites.src = 'img/sprites.svg';
 
-var backgroundColors = [
-'rgb(186, 183, 94)', //gold
-'rgb(252, 98, 60)', //orange
-'rgb(170, 255, 253)', //light sky
-'rgb(79, 191, 247)', //sky
-'rgb(25, 25, 56)',
-'rgb(45, 69, 122)',
-'rgb(86, 86, 86)',
-'rgb(79, 191, 247)', //sky
-'rgb(79, 191, 247)', //sky
-];
-
 function Level(plan, lvlnmbr) {
-	this.background = backgroundColors[lvlnmbr];
-	this.width = plan[0].length;
-	this.height = plan.length;
+	this.background = plan[1][0];
+	this.lvlnmbr = lvlnmbr;
+	this.width = plan[0][0].length;
+	this.height = plan[0].length;
 	this.grid = [];
 	this.actors = [];
 	this.text = null;
@@ -313,10 +415,16 @@ function Level(plan, lvlnmbr) {
 		'0': Door,
 		'1': Door,
 		'2': Door,
-		'7': Door,
+		'3': Door,
+		'8': Door,
 		'a': King,
 		'b': Commoner,
-		'c': Monk,
+		'c': Ramana,
+		'e': Krishna,
+		'f': Laozi,
+		'h': Shakespeare,
+		'i': Jesus,
+		'j': Alex,
 		'd': Door,
 		'D': Door,
 		'g': Grail,
@@ -330,8 +438,8 @@ function Level(plan, lvlnmbr) {
 
 	for (var y = 0; y < this.height; y++){
 		var gridLine = [];
-		for (var x = 0; x < plan[y].length; x++){
-			var ch = plan[y].charAt(x);
+		for (var x = 0; x < plan[0][y].length; x++){
+			var ch = plan[0][y].charAt(x);
 			var Actor = actorTypes[ch];
 			var fieldType = null;
 			if (Actor)
@@ -380,9 +488,10 @@ Level.prototype.isFinished = function() {
   return this.status != null && this.finishDelay < 0;
 };
 Level.prototype.playerTouched = function(type, actor) {
+	var boundHandler = handler.bind(this);
 	if (type == "lava" && this.status == null) {
 	    this.status = "lost";
-	    this.finishDelay = 1;
+	    this.finishDelay = 2;
 	}
 	//coins are lantern fuel
 	else if (type == 'coin' ) {
@@ -403,8 +512,9 @@ Level.prototype.playerTouched = function(type, actor) {
 	}
 	else if (type == 'door' && actor.locked)
 		console.log('It\'s locked.');
-	else if (type == 'heavensDoor' || type == 'door' && (actor.door == '0' || actor.door == '1' || actor.door == '2' || actor.door == '7'))
+	else if (type == 'heavensDoor' || type == 'door' && (actor.door == '0' || actor.door == '1' || actor.door == '2' || actor.door =='3' || actor.door == '8')) {
 		this.status = actor.door;
+	}
 	else if (type == 'key') {
 		this.actors = this.actors.filter(function(other) {
 			if (other.locked) other.locked = false;
@@ -427,9 +537,32 @@ Level.prototype.playerTouched = function(type, actor) {
 	else if (type == 'commoner') {
 		this.text = '\'An honest man? I think I saw him go down into that hole.\'';
 	}
-	else if (type == 'monk') {
+	else if (type == 'ramana') {
 		this.text = '\'Stop this silly search. Jump into the lava and join the Immortals.\'';
 	}
+	else if (type == 'laozi') {
+		var playerAct = Object.getPrototypeOf(this.player).act;
+		Object.getPrototypeOf(this.player).act = function() {null};
+		actor.speed = new Vector (0, 0);
+		var textArray = ['Lao Tzu: Welcome, friend!', 'I\'m happy to see you here! We\'ve had such a good laugh, watching you roam about with that lantern ...',
+						'... looking for an \'honest man\'. Ha-ha-ha!',
+						'By Zeus, even I can\'t point you to an honest man.', 'But don\'t be discouraged. After all, your earnestness has brought you to the Land of Immortals.',
+						'Here, there is no need for honesty. Everything is already clear as it is.', 'Come, join the party!', 'We are all going to start dancing soon.'];
+		var textScreen = 0;
+		this.text = textArray[textScreen];
+		addEventListener('keypress', boundHandler);	
+	}
+	
+	function handler() {
+			if (textScreen < textArray.length - 1){
+				textScreen++;
+				this.text = textArray[textScreen];
+			} else {
+				actor.speed = new Vector(2, 0);
+				Object.getPrototypeOf(this.player).act = playerAct;
+				removeEventListener('keypress', boundHandler);
+			}
+		}
 };
 
 function getLines(ctx, text, maxWidth) {
@@ -454,7 +587,6 @@ CanvasDisplay.prototype.drawText = function() {
 	this.cx.font = "20px VT323";
 	if(this.level.text) {
 		var lines = getLines.call(this, this.cx, this.level.text, 450);
-   		console.log('lines:', lines);
 	    this.cx.save();
 	    this.cx.textBaseline = 'top';
 	    var lineY = 280;
@@ -545,10 +677,58 @@ function Commoner(ch, pos) {
 	this.size = new Vector(1.25, 2.5);
 	this.type = 'commoner';
 }
-function Monk(ch, pos) {
+function Ramana(ch, pos) {
 	this.pos = pos.plus(new Vector(0, -.50));
 	this.size = new Vector(1.5, 1.5);
-	this.type = 'monk';
+	this.type = 'ramana';
+}
+function Krishna(ch, pos) {
+	this.size = new Vector(1.25, 2.5);
+	this.type = 'krishna';
+	this.basePos = this.pos = pos.plus(new Vector(0.2, .1));
+	this.wobble = Math.random() * Math.PI * 2;
+}
+var wobbleSpeed = 1; wobbleDist = 0.09;
+Krishna.prototype.act = function(step) {
+	this.wobble += step * wobbleSpeed;
+	var wobblePos = Math.sin(this.wobble) * wobbleDist;
+	this.pos = this.basePos.plus(new Vector(0, wobblePos));
+};
+function Laozi(ch, pos) {
+	this.pos = pos.plus(new Vector(0, -1.5));
+	this.size = new Vector(1.25, 2.5);
+	this.speed = new Vector(-.5, 0);
+	this.type = 'laozi';
+}
+Laozi.prototype.act = function(step, level) {
+	var nextStep = this.pos.plus(this.speed.times(step));
+	var obstacle = level.obstacleAt(nextStep, this.size);
+	if (!obstacle){
+		this.pos = nextStep;
+	}
+	else {
+		this.speed = this.speed.times(-1);
+		this.pos = nextStep;
+	}
+	// var otherActor = level.actorAt(this);
+	// if(otherActor && otherActor != this.lastActorTouched) level.playerTouched(otherActor.type, otherActor);
+	// this.lastActorTouched = otherActor;
+	// if(!otherActor) level.text = null;
+};
+function Shakespeare(ch, pos) {
+	this.pos = pos.plus(new Vector(0, -1.4));
+	this.size = new Vector(1.25, 2.5);
+	this.type = 'shakespeare';
+}
+function Jesus(ch, pos) {
+	this.pos = pos.plus(new Vector(0, -1.4));
+	this.size = new Vector(1.25, 2.5);
+	this.type = 'jesus';
+}
+function Alex(ch, pos) {
+	this.pos = pos.plus(new Vector(0, -1.4));
+	this.size = new Vector(1.5, 2.5);
+	this.type = 'alex';
 }
 function Player(ch, pos) {
 	this.speed = new Vector(0, 0);
@@ -561,8 +741,10 @@ Player.prototype.type = 'player';
 //passes its arguments to moveX and moveY and calls them, and if there is an actor at
 //player.pos, passes the actor to playerTouched and calls it
 Player.prototype.act = function(step, level, keys) {
-	this.moveX(step, level, keys);
-	this.moveY(step, level, keys);
+	if (!document.getElementById('overlay') && level.status != 'lost') {
+		this.moveX(step, level, keys);
+		this.moveY(step, level, keys);
+	}
 
 	var otherActor = level.actorAt(this);
 	if(otherActor && otherActor != this.lastActorTouched) level.playerTouched(otherActor.type, otherActor);
@@ -571,8 +753,8 @@ Player.prototype.act = function(step, level, keys) {
 
 	//losing animation
 	if (level.status == "lost") {
-	    this.pos.y += step;
-	    this.size.y -= step;
+	    if(this.size.y > 0) this.pos.y += .108;
+	    this.size.y >= .1 ? this.size.y -= .1 : this.size.y = 0;
 	}
 };
 //moves left or right unless obstacle at next step. if obstacle, call playertouched
@@ -735,6 +917,7 @@ function CanvasDisplay(parent, level, startscreen) {
 			};
 	if (startscreen) return;
 	this.flipPlayer = false;
+	this.flipLaozi = false;
 	this.level = level;
 	this.drawFrame(0);
 }
@@ -827,7 +1010,23 @@ CanvasDisplay.prototype.drawActors = function() {
 		//not needed if sprites are 22 wide
 		var charHeight = 66;
 		var charX;
-		if (actor.type == 'lava' || actor.type == 'heavensDoor') tileX = 2 * scale;
+		if(actor.type == 'laozi'){
+			var laozi = this.level.actors.filter(function(actor) {
+			return actor.type == 'laozi';
+			})[0];
+
+			if(laozi.speed.x != 0)
+				this.flipLaozi = laozi.speed.x > 0;
+			this.cx.save();
+			if(this.flipLaozi)
+				flipHorizontally(this.cx, x + width / 2);
+			this.cx.drawImage(otherChars,
+								6 * scale, 0, width + 8, charHeight,
+								x, y, width + 8, height);
+			this.cx.restore();
+		}
+
+		else if (actor.type == 'lava' || actor.type == 'heavensDoor') tileX = 2 * scale;
 		else if (actor.type == 'coin') tileX = Math.ceil(3 * scale);
 		else if (actor.type == 'key') tileX = 3.5 * scale;
 		else if (actor.type == 'grail') tileX = 8 * scale;
@@ -836,12 +1035,20 @@ CanvasDisplay.prototype.drawActors = function() {
 							4.5 * scale, 0, width / 2, height / 2,
 							x,			 y,	width, height);
 		}
-		else if (actor.type == 'monk') {
+		else if (actor.type == 'ramana') {
 			charX = .01;
 			charHeight = 33;
 		}
 		else if (actor.type == 'commoner') charX = 1.5 * scale;
 		else if (actor.type == 'king') charX = 3 * scale;
+		else if (actor.type == 'krishna') charX = 4.4 * scale;
+		else if (actor.type == 'shakespeare') charX = 7.5 * scale;
+		else if (actor.type == 'jesus') charX = 9 * scale;
+		else if (actor.type == 'alex') {
+			this.cx.drawImage(otherChars,
+								10.5 * scale, 0, 40, charHeight,
+								x, y, width, height);
+		}
 		else if (actor.type == 'player') {
 			this.drawPlayer(x, y, width, height);
 		}
@@ -875,6 +1082,53 @@ function runAnimation(frameFunc) {
 
 var arrows = trackKeys(arrowCodes);
 function runLevel(level, Display, andThen) {
+	if(level.lvlnmbr == 3) {
+		makeCharactersFly(level);
+
+		if(audio.isMuted() == true) audio.toggleMute();
+		audio.current.pause();
+		audio.current = audio.solarboat;
+		audio.current.play();
+		audio.current.once('end', function() {
+			var blackScreen = document.createElement('div');
+			blackScreen.id = 'black-screen';
+			var counter = 0;
+			var toggle = 0;
+			document.getElementById('game').appendChild(blackScreen);
+			flashes([95, 98, 98]);
+			function flashes(array) {
+				var values = array;
+				setTimeout(function() {
+					blackScreen.style.opacity = 0;
+					setTimeout(function() {
+						blackScreen.style.opacity = 1;
+					}, 8);
+					if (array.length > 0){
+						array.shift();
+						flashes(values);
+					}
+				}, array[0]);
+			}
+			// setTimeout(endFlash = setInterval(function() {
+			// 	counter++
+			// 	blackScreen.style.opacity = toggle;
+			// 	toggle ^= true;
+			// 	if (counter == 4) clearInterval(endFlash);
+			// }, 40), 1000);
+			
+
+		});
+
+		var whiteScreen = elt('div', 'white-screen');
+		document.getElementById('game').insertBefore(whiteScreen, audio.button);
+		var jWhiteScreen = $('.white-screen');
+		window.setTimeout(function() {
+			jWhiteScreen.fadeOut({
+				duration: 4000,
+				easing: 'swing',
+				})
+			}, 1000);
+		}
 	var display = new Display(document.getElementById('game'), level);
 	runAnimation(function(step) {
 		level.animate(step, arrows);
@@ -894,7 +1148,7 @@ function runGame(plans, Display) {
     runLevel(new Level(plans[n], n), Display, function(status) {
     if (status == "lost")
     	startLevel(n);
-    else if (status == '0' || status == '1' || status == '2' || status == '7')
+    else if (status == '0' || status == '1' || status == '2' || status == '3' || status == '8')
     	startLevel(status);
     else if (n < plans.length - 1)
     	startLevel(n + 1);
@@ -902,7 +1156,7 @@ function runGame(plans, Display) {
         alert("Game over.");
     });
   }
-  startLevel(3);
+  startLevel(4);
 }
 
 function startAlert() {
@@ -914,7 +1168,7 @@ function startAlert() {
 	alert.id = 'dialog';
 	alert.innerHTML = 'Objective:\<br\>Find an honest man.';
 	document.body.appendChild(alert);
-		$( "#dialog" ).dialog({
+	$( "#dialog" ).dialog({
 		appendTo: "#game",
 		autoOpen: true,
 		buttons: [
@@ -929,7 +1183,6 @@ function startAlert() {
 		width: 250
 		
 	});
-
 	$('#dialog').dialog('widget').position({
 		my: "center",
 		at: "center",
@@ -938,27 +1191,71 @@ function startAlert() {
 	});
 }
 
-function Audio() {
+var audio = new Audo();
+
+
+function Audo() {
+	this.theme = new Howl({
+		src: ['platos-theme.mp3'],
+		//src: ['https://d17oy1vhnax1f7.cloudfront.net/items/0M2o3P3v2L3v38003g3H/platos-theme.mp3'],
+		sprite: {
+			intro: [0, 33333],
+			loop: [33333, 69079, true]
+		},
+	});
+	this.theme.once('load', function() {
+		this.play('intro');
+	});
+	this.theme.once('end', function() {
+		this.play('loop');
+	});
+	this.solarboat = new Howl({
+		src: ['solarboat.mp3'];
+		//cloud app link for working locally (since it must be a url)
+		//src: ['https://d17oy1vhnax1f7.cloudfront.net/items/2Z3A022R0g3c2v3r1O19/solarboat.mp3'],
+		//test sound
+		//src: ['https://d17oy1vhnax1f7.cloudfront.net/items/2y1I2t35300p0f0J2R0K/Strange_Static-KP-1708174947.mp3'],
+	});
+	
+	this.current = this.theme;
+
 	this.button = document.getElementById('mute');
-	this.tracks = {
-		preloop: document.getElementById('preloop'),
-		loop: document.getElementById('loop')
-		};
-	this.current = this.tracks.preloop;
-	console.log(this.current);
-	this.tracks.preloop.onended = function() {
-		this.current = this.tracks.loop;
-		this.current.play();
-		if(this.isMuted) this.current.muted = !this.current.muted;
-		console.log(this.current);
-	}.bind(this);
+
 	this.toggleMute = function() {
-		this.current.muted = !this.current.muted;
-		if (!this.current.muted) this.button.style.backgroundPosition = '0px';
-		else this.button.style.backgroundPosition = '-22px';
-		this.isMuted = !this.isMuted;
+		if (this.isMuted()) {
+			$('#mute').removeClass('muted');
+			this.current.mute(false);
+			this.button.style.backgroundPosition = '0px';
+		}
+		else {
+			this.button.className += ' muted';
+			this.current.mute(true);
+			this.button.style.backgroundPosition = '-22px';
+			
+		}
 	};
-	this.isMuted = false;
+	this.isMuted = function() {
+		if((' ' + this.button.className + ' ').indexOf(' muted ') > -1)
+			return true;
+		else return false;
+	};
+}
+
+function makeCharactersFly(level) {
+	var chars = ['ramana', 'krishna', 'laozi', 'player', 'shakespeare', 'jesus', 'alex'];
+	var offset = .1;
+	level.actors.forEach(function(actor) {
+		if (chars.indexOf(actor.type) > -1){
+			offset += .3;
+			actor.basePos = actor.pos.plus(new Vector(0.2, .1));
+			actor.wobble = offset * Math.PI * 2;
+			Object.getPrototypeOf(actor).act = function(step) {
+				this.wobble += step * wobbleSpeed / 1.8;
+				var wobblePos = Math.sin(this.wobble) * wobbleDist * 15;
+				this.pos = this.basePos.plus(new Vector(0, wobblePos));
+			};
+		}
+	});
 }
 
 function startGame() {
@@ -977,7 +1274,6 @@ var textcanvas = {
 }
 
 var display = new CanvasDisplay(document.getElementById('game'), startscreen, true);
-var audio = new Audio();
 
 startscreen.background.onload = function() {
 	display.cx.drawImage(startscreen.background, 0, 0);
@@ -985,7 +1281,6 @@ startscreen.background.onload = function() {
 	audio.toggleMute();
 	});
 };
-
  window.setInterval(function() {
  	if(Math.random() > .85)
  		display.cx.drawImage(startscreen.flicker, 0, 0);
@@ -1008,7 +1303,7 @@ var textFlash = setInterval(function() {
  }, 1000);
 
 
-addEventListener('keypress', function() {
+addEventListener('keyup', function() {
 	clearInterval(textFlash);
 	textCanvas.clear();
 	display.clear();

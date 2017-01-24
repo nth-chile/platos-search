@@ -38,3 +38,17 @@
 button {
 	outline: none;
 }
+.white-screen {
+    position:absolute;
+	top:0;
+	width:550px;
+	height:370px;
+	background-color: #fff;
+}
+#black-screen {
+	position: absolute;
+	top: 0;
+	width: 550px;
+	height: 370px;
+	background-color: #000;
+}
