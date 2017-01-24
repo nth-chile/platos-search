@@ -173,7 +173,7 @@ var GAME_LEVELS = [
 		 'xxxxxxxxxxxxxxxxx!!!xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
 		 ],
 		 //sky
-		 ['rgb(79, 191, 247)'],
+		 ['rgb(79, 191, 247)']
 	 ],
 
 	 [
@@ -358,8 +358,7 @@ var GAME_LEVELS = [
 		 '@                                                               ',
 		 'rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr',
 		 ],
-		 //sky
-		 ['rgb(0, 0, 1)']
+		 ['rgb(0, 0, 0)']
 	],
 
 	[
@@ -514,7 +513,7 @@ Level.prototype.playerTouched = function(type, actor) {
 	else if (type == 'door' && actor.locked)
 		console.log('It\'s locked.');
 	else if (type == 'heavensDoor' || type == 'door' && (actor.door == '0' || actor.door == '1' || actor.door == '2' || actor.door =='3' || actor.door == '8')) {
-		this.status = actor.door;
+		this.status = parseInt(actor.door);
 	}
 	else if (type == 'key') {
 		this.actors = this.actors.filter(function(other) {
@@ -1146,6 +1145,7 @@ function runLevel(level, Display, andThen) {
 }
 function runGame(plans, Display) {
   function startLevel(n) {
+  	console.log(n);
     runLevel(new Level(plans[n], n), Display, function(status) {
     if (status == "lost")
     	startLevel(n);
@@ -1260,59 +1260,62 @@ function makeCharactersFly(level) {
 
 function startGame() {
 
-var startscreen = {
-	width: 550,
-	height: 370,
-	background: document.createElement('img'),
-	flicker: document.createElement('img'),	
-};
-startscreen.background.src = 'img/startscreen.svg';
-startscreen.flicker.src = 'img/caveflicker.svg';
+	var startscreen = {
+		width: 550,
+		height: 370,
+		background: document.createElement('img'),
+		flicker: document.createElement('img'),	
+	};
+	startscreen.background.src = 'img/startscreen.svg';
+	startscreen.flicker.src = 'img/caveflicker.svg';
 
-var textcanvas = {
-	width: 270 / scale,
-	height:25 / scale,
-}
-
-var display = new CanvasDisplay(document.getElementById('game'), startscreen, true);
-
-startscreen.background.onload = function() {
-	display.cx.drawImage(startscreen.background, 0, 0);
-	gamediv.removeChild(loadingOverlay);
-	audio.button.addEventListener('click', function (e) {
-	audio.toggleMute();
-	});
-};
- window.setInterval(function() {
- 	if(Math.random() > .85)
- 		display.cx.drawImage(startscreen.flicker, 0, 0);
- 	else
- 		display.cx.drawImage(startscreen.background, 0, 0);
- }, 90);
-isClear = true;
-var textCanvas = new CanvasDisplay(document.getElementById('game'), textcanvas, true);
-textCanvas.canvas.id = 'text-canvas';
-var textFlash = setInterval(function() {
-	if (isClear == true) {
-		isClear = !isClear;
-		textCanvas.cx.font = "20px VT323";
- 		textCanvas.cx.fillStyle = "white";
- 		textCanvas.cx.fillText('press any key to start', 0, 15);
-	} else {
-		textCanvas.cx.clearRect(0,0, textcanvas.width * scale, textcanvas.height * scale);
-		isClear = true;
+	var textcanvas = {
+		width: 270 / scale,
+		height:25 / scale,
 	}
- }, 1000);
+
+	var display = new CanvasDisplay(document.getElementById('game'), startscreen, true);
+
+	startscreen.background.onload = function() {
+		display.cx.drawImage(startscreen.background, 0, 0);
+		gamediv.removeChild(loadingOverlay);
+		audio.button.addEventListener('click', function (e) {
+		audio.toggleMute();
+		});
+	};
+	 window.setInterval(function() {
+	 	if(Math.random() > .85)
+	 		display.cx.drawImage(startscreen.flicker, 0, 0);
+	 	else
+	 		display.cx.drawImage(startscreen.background, 0, 0);
+	 }, 90);
+	isClear = true;
+	var textCanvas = new CanvasDisplay(document.getElementById('game'), textcanvas, true);
+	textCanvas.canvas.id = 'text-canvas';
+	var textFlash = setInterval(function() {
+		if (isClear == true) {
+			isClear = !isClear;
+			textCanvas.cx.font = "20px VT323";
+	 		textCanvas.cx.fillStyle = "white";
+	 		textCanvas.cx.fillText('press any key to start', 0, 15);
+		} else {
+			textCanvas.cx.clearRect(0,0, textcanvas.width * scale, textcanvas.height * scale);
+			isClear = true;
+		}
+	 }, 1000);
 
 
-addEventListener('keyup', function() {
-	clearInterval(textFlash);
-	textCanvas.clear();
-	display.clear();
-	runGame(GAME_LEVELS, CanvasDisplay);
-	startAlert();
-});
+	addEventListener('keyup', clearStartScreen);
+	function clearStartScreen(){
+		clearInterval(textFlash);
+		textCanvas.clear();
+		display.clear();
+		runGame(GAME_LEVELS, CanvasDisplay);
+		startAlert();
+		removeEventListener('keyup', clearStartScreen);
+	};
 }
+
 
 //loading ...
 var gamediv = document.getElementById('game');
