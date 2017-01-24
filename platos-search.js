@@ -1277,6 +1277,7 @@ var display = new CanvasDisplay(document.getElementById('game'), startscreen, tr
 
 startscreen.background.onload = function() {
 	display.cx.drawImage(startscreen.background, 0, 0);
+	gamediv.removeChild(loadingOverlay);
 	audio.button.addEventListener('click', function (e) {
 	audio.toggleMute();
 	});
@@ -1325,8 +1326,6 @@ loadingText.innerHTML = 'Loading . . .';
 loadingOverlay.appendChild(loadingText);
 gamediv.appendChild(loadingOverlay);
 
-
 audio.theme.once('load', function() {
 	startGame();
-	gamediv.removeChild(loadingOverlay);
 });
