@@ -1193,7 +1193,6 @@ function startAlert() {
 
 var audio = new Audo();
 
-
 function Audo() {
 	this.theme = new Howl({
 		src: ['platos-theme.mp3'],
@@ -1259,6 +1258,7 @@ function makeCharactersFly(level) {
 }
 
 function startGame() {
+
 var startscreen = {
 	width: 550,
 	height: 370,
@@ -1311,4 +1311,22 @@ addEventListener('keyup', function() {
 	startAlert();
 });
 }
-startGame();
+
+//loading ...
+var gamediv = document.getElementById('game');
+var loadingOverlay = document.createElement('div');
+var loadingText = document.createElement('h3');
+
+loadingOverlay.id = 'loading-overlay';
+loadingText.id = 'loading-text';
+
+loadingText.innerHTML = 'Loading . . .';
+
+loadingOverlay.appendChild(loadingText);
+gamediv.appendChild(loadingOverlay);
+
+
+audio.theme.once('load', function() {
+	startGame();
+	gamediv.removeChild(loadingOverlay);
+});

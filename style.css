@@ -11,6 +11,18 @@
 	height:370px;
 	background-color: rgba(25,25,25,.9);
 }
+#loading-overlay {
+	position:absolute;
+	top:0;
+	width:550px;
+	height:370px;
+	background-color: rgb(80,81,81);
+}
+#loading-text {
+	text-align: center;
+	vertical-align: middle;
+	line-height: 360px;    
+}
 #mute {
 	position:absolute;
 	width:22px;
@@ -31,9 +43,9 @@
 	visibility: visible;
 }
 
-#dialog {
-	font-family: "VT323";
+* {
 	color: white;
+	font-family: "VT323";
 }
 button {
 	outline: none;
