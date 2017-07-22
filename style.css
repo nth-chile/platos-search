@@ -1,3 +1,8 @@
+html {
+	height:370px;
+	width:550px;
+	overflow:hidden;
+}
 #game {
 	display:inline-block;
 	position:absolute;
