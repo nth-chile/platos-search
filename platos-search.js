@@ -179,19 +179,19 @@ var GAME_LEVELS = [
 		 '                                                           r            =             ',
 		 '                                                                                      ',
 		 '                                                       o                              ',
-		 '                                                       r     r!!!!!!!!!!r   rrrrrrrrrr',
-		 '                                                             rrrrrrrrrrrr   r         ',
+		 '                                                       r     r!!!!!!!!!r    rrrrrrrrrr',
+		 '                                                             rrrrrrrrrrr    r         ',
 		 '                                                   o         r              r         ',
 		 '                                                   r         r     o        r         ',
-		 '                               o                             r              r         ',
-		 '                               r     o         o             r  =           r         ',
-		 '                                     r         r                            r         ',
+		 '                                                             r              r         ',
+		 '                               o     o         o             r  =           r         ',
+		 '                               r     r         r                            r         ',
 		 '                                                                rrrrrrrrrrrrr         ',
 		 '                                                                                      ',
 		 '                                                                                      ',
 		 '                             rrrrrrrrrrrr  rrrrrrrrrrr                                ',
 		 '                                            rrrrrrrrrr                                ',
-		 '                                            rrrrrrrrrr!!!!!!!!!rr                     ',
+		 '                                            rrrrrrrrrr       rrrr                     ',
 		 '                                     o      rrrrrrrrrr!!!!!!!!!!r                     ',
 		 '                      rrrrrrrrrrrrrrrrrrr   rrrrrrrrrr!!!!!!!!!!r                     ',
 		 '    @    o           rrrrrrrrrrrrrrrrrrrr!!!rrrrrrrrrr!!!!!!!!!!r                   d ',
@@ -203,33 +203,33 @@ var GAME_LEVELS = [
 
 	 [
 		 [
-		 'l                   !r                               r        !        rrrrrrrrrrrrrrrrrrr',
-		 '!!!!!               !r                               r        v        rrrrrrrrrrrrrrrrrrr',
-		 'rrrr!               vr                               r                 rr!!!!!!!!!!!!!!!!!',
+		 'l                   !r                               r                 rrrrrrrrrrrrrrrrrrr',
+		 '!!!!!               vr                               r                 rrrrrrrrrrrrrrrrrrr',
+		 'rrrr!                r                               r                 rr!!!!!!!!!!!!!!!!!',
 		 'r   |                r                               r                 rr!!!!!!!!!!!!!!!!!',
 		 'r                    r                               r                 rr!!!!!!!!!!!!!!!!!',
 		 'r                    r                               r                 rr!!!!!!!!!!!!!!!!!',
 		 'r k     o  o  o      r                               r                 rr!!!!!!!!!!!!!!!!!',
 		 'r                    r      o   o   o                r                 rrr!!!!!!!!!!!!!!!!',
 		 'rmmmmmmmmmmmmmmmm    r                               r      rrrrrrrr    rrrrrrrrrrrrrrrrrr',
-		 '                r    r   rrrrrrrrrrrrrrrrrr    rrrr  r     =rrr     r    rrrrrrrrrrrrrrrrr',
+		 '                r    r     rrrrrrrrrrrrrrrr    rrrr  r     =rrr     r    rrrrrrrrrrrrrrrrr',
 		 '                r    r                 rrrr=         r    r  r       r                    ',
 		 '                r   rr           =     rrrr    rrrr or       r        r                   ',
 		 '                r    r                 rrr     rrrr or       r         r                D ',
-		 '                r    rrrrrrrrrrrrrrr   rrr    rrrrr or       r          rrrrrrrrrrrrrrrrrr',
+		 '                r    rrrrrrrrrrrrrr    rrr    rrrrr or       r          rrrrrrrrrrrrrrrrrr',
 		 '                rr                     rrr   =      or      rr                            ',
 		 '                rr  r         =        r     rrrrrr o                                     ',
-		 '   k            rr                     r     rrrrrr o                                     ',
+		 '   k         o  rr                     r     rrrrrr o                                     ',
 		 'rrrr            rr        rrrrrrrrrrrrrr            r                                     ',
 		 '          rrrrrrrrrrrrrrrrrrrrrrrrrrrrrr            rrrrrrrr                              ',
 		 '                                          r          r                                    ',
-		 '=                                                    r                                    ',
+		 '=     o    o    o                                    r                                    ',
 		 '                                                     r                                    ',
 		 'rrrrr  rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr                                    ',
 		 '                                                                                          ',
-		 '                                                                                          ',
-		 '      @    o    o    o    o    o                                                          ',
-		 'mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm',
+		 '           o                                                                              ',
+		 '      @                                                                                   ',
+		 'mmmmmmmmmmmmmmmm!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!',
 		 ],
 		 //purple
 		 ['rgb(45, 69, 122)']
@@ -313,11 +313,11 @@ var GAME_LEVELS = [
 
 	 [
 		 [
-		 'l                                                               ',
-		 '                                                                ',
-		 '                              k                                 ',
-		 '                                                                ',
-		 '                           rrrrrrr                              ',
+		 'l                                       r                       ',
+		 '                                        r                       ',
+		 '                              k         r                       ',
+		 '                                        r                       ',
+		 '                           rrrrrrr      r                       ',
 		 '                 rrrrrrrrrr       rrrrrrr                       ',
 		 '                r                        rr                     ',
 		 '               r              o            r                    ',
@@ -335,8 +335,8 @@ var GAME_LEVELS = [
 		 '                     r      r     r      r!!!!!!!r      r       ',
 		 '    r                 r  o  r     r       r!!!!!!r      r       ',
 		 '    r    rrrr       rr     r   r  r        r!!!!r       r       ',
-		 '     rrrr      r  rr   o   r               r!!rr       r        ',
-		 '                rr        r         r   o   rr        r         ',
+		 '     rrrr      r  rr   o   r       r       r!!rr       r        ',
+		 '                rr        r         r   o   rrv       r         ',
 		 '                          r   r     r                r          ',
 		 '               o    o    r           r             rr           ',
 		 '      rrrrrrr           r             rr         rr             ',
@@ -534,7 +534,7 @@ Level.prototype.playerTouched = function(type, actor) {
 		var textArray = ['Lao Tzu: Welcome, friend!', 'I\'m happy to see you here! We\'ve had such a good laugh, watching you roam about with that lantern ...',
 						'... looking for an \'honest man\'. Ha-ha-ha!',
 						'By Zeus, even I can\'t point you to an honest man.', 'But don\'t be discouraged. After all, your earnestness has brought you to the Land of Immortals.',
-						'Here, there is no need for honesty. Everything is already clear as it is.', 'Come, join the party!', 'We are all going to start dancing soon.'];
+						'Here, there is no need for honesty.', 'Come, join the party!', 'We are all going to start dancing soon.'];
 		var textScreen = 0;
 		this.text = textArray[textScreen];
 		addEventListener('keypress', boundHandler);	
@@ -1055,6 +1055,36 @@ CanvasDisplay.prototype.drawActors = function() {
 	}, this);
 };
 
+function jAlert(text) {
+	if(document.getElementsByClassName('jalert').length > 0)
+		var alert = document.getElementsByClassName('jalert');
+	else {
+		var alert = elt('div');
+		alert.className = 'jalert';
+		alert.innerHTML = text;
+		document.body.appendChild(alert);
+	}
+	$('.jalert').dialog({
+		appendTo: "#game",
+		autoOpen: true,
+		buttons: [
+			{
+				text: "Close",
+				click: function() {
+					$( this ).dialog( "close" );
+					addEventListener('touchend', touchendHandler);
+				}
+			}
+		],
+		width: 250
+	});
+	$('.jalert').dialog('widget').position({
+		my: "center",
+		at: "center",
+		of: "#game",
+		collision: "none"
+	});
+}
 
 function runAnimation(frameFunc) {
 	var lastTime = null;
@@ -1150,7 +1180,6 @@ function runGame(plans, Display) {
   }
   startLevel(4);
 }
-
 function startAlert() {
 	var gamediv = document.getElementById('game');
 	var overlay = document.createElement('div');
@@ -1158,7 +1187,7 @@ function startAlert() {
 	gamediv.appendChild(overlay);
 	var alert = elt('div');
 	alert.id = 'dialog';
-	alert.innerHTML = 'Objective:\<br\>Find an honest man.';
+	alert.innerHTML = 'Find an honest man.';
 	document.body.appendChild(alert);
 	$( "#dialog" ).dialog({
 		appendTo: "#game",
@@ -1181,6 +1210,11 @@ function startAlert() {
 		of: "#game",
 		collision: "none"
 	});
+}
+
+function touchendHandler() {
+	removeEventListener('touchend', touchendHandler);
+	jAlert('Currently, playing this game requires a keyboard.');
 }
 
 var audio = new Audo();
@@ -1295,6 +1329,7 @@ function startGame() {
 		}
 	 }, 1000);
 
+	addEventListener('touchend', touchendHandler);
 
 	addEventListener('keyup', clearStartScreen);
 	function clearStartScreen(){
@@ -1304,7 +1339,7 @@ function startGame() {
 		runGame(GAME_LEVELS, CanvasDisplay);
 		startAlert();
 		removeEventListener('keyup', clearStartScreen);
-	};
+	}
 }
 
 
