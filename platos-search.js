@@ -1180,7 +1180,7 @@ function runGame(plans, Display) {
   }
   startLevel(4);
 }
-function startAlert() {
+function findAnHonestManAlert() {
   var gamediv = document.getElementById('game');
   var overlay = document.createElement('div');
   overlay.id = 'overlay';
@@ -1212,12 +1212,59 @@ function startAlert() {
   });
 }
 
+
 function touchendHandler() {
   removeEventListener('touchend', touchendHandler);
   jAlert('Currently, playing this game requires a keyboard.');
 }
 
 var audio = new Audo();
+
+function wantsToPlaySoundPrompt(clearStartScreen) {
+  var gamediv = document.getElementById('game');
+  var overlay = document.createElement('div');
+  overlay.id = 'wantsToPlaySoundPromptOverlay';
+  gamediv.appendChild(overlay);
+  var alert = elt('div');
+  alert.id = 'wantsToPlaySoundPromptAlert';
+  alert.innerHTML = 'This page wants to play sound.';
+  document.body.appendChild(alert);
+  $("#wantsToPlaySoundPromptAlert").dialog({
+    appendTo: "#game",
+    autoOpen: true,
+    buttons: [
+      {
+        text: "Block",
+        click: function () {
+          $(this).dialog("close");
+          gamediv.removeChild(overlay);
+          setTimeout(() => {
+            addEventListener('keyup', clearStartScreen);
+          }, 1000)
+        }
+      },
+      {
+        text: "Allow",
+        click: function () {
+          $(this).dialog("close");
+          gamediv.removeChild(overlay);
+          audio.theme.play('intro');
+          setTimeout(() => {
+            addEventListener('keyup', clearStartScreen);
+          }, 1000)
+        }
+      }
+    ],
+    width: 250
+  });
+
+  $('#wantsToPlaySoundPromptAlert').dialog('widget').position({
+    my: "center",
+    at: "center",
+    of: "#game",
+    collision: "none"
+  });
+}
 
 function Audo() {
   this.theme = new Howl({
@@ -1228,9 +1275,9 @@ function Audo() {
       loop: [33333, 69079, true]
     },
   });
-  this.theme.once('load', function () {
-    this.play('intro');
-  });
+  // this.theme.once('load', function () {
+  //   this.play('intro');
+  // });
   this.theme.once('end', function () {
     this.play('loop');
   });
@@ -1259,6 +1306,7 @@ function Audo() {
 
     }
   };
+  
   this.isMuted = function () {
     if ((' ' + this.button.className + ' ').indexOf(' muted ') > -1)
       return true;
@@ -1336,18 +1384,17 @@ function startGame() {
 
   addEventListener('touchend', touchendHandler);
 
-  addEventListener('keyup', clearStartScreen);
+  wantsToPlaySoundPrompt(clearStartScreen);
 
   function clearStartScreen() {
     clearInterval(textFlash);
     textCanvas.clear();
     display.clear();
     runGame(GAME_LEVELS, CanvasDisplay);
-    startAlert();
+    findAnHonestManAlert();
     removeEventListener('keyup', clearStartScreen);
   }
 }
-
 
 //loading ...
 var gamediv = document.getElementById('game');
@@ -1362,6 +1409,8 @@ loadingText.innerHTML = 'Loading . . .';
 loadingOverlay.appendChild(loadingText);
 gamediv.appendChild(loadingOverlay);
 
-audio.theme.once('load', function () {
-  startGame();
+$(document).ready(function() {
+  audio.theme.once('load', function () {
+    startGame();
+  });
 });
